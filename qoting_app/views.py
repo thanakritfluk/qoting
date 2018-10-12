@@ -1,6 +1,8 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Question
+
+
 # from django.template import loader
 
 
@@ -9,7 +11,7 @@ def start_page(request):
     # Pull all 5 question from database
     all_question = Question.objects.order_by()[:5]
     # template = loader.get_template('qoting_app/startpage.html')
-    context = {'all_question': all_question,}
+    context = {'all_question': all_question}
     # output = ', '.join([q.question for q in all_question])
     return render(request, 'qoting_app/startpage.html', context)
 
