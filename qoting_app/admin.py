@@ -3,5 +3,5 @@ from .models import Question, UserDetail
 
 # Register your models here.
 
-admin.register(Question)
-admin.register(UserDetail)
+admin.site.register(Question)
+admin.site.register(UserDetail)
