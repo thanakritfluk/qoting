@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'qoting',
         'USER': 'postgres',
         'PASSWORD': '1234',
-        'HOST': 'pellefant.db.elephantsql.com',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
     # 'default': {
