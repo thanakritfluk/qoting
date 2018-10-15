@@ -75,9 +75,21 @@ WSGI_APPLICATION = 'qoting_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'qoting',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': 'pellefant.db.elephantsql.com',
+        'PORT': '5432',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'cysxwfzm',
+    #     'USER': 'cysxwfzm',
+    #     'PASSWORD': 'IBcBQZz2-dYrZgJ-2VvAAnrczTWeQU8d',
+    #     'HOST': 'pellefant.db.elephantsql.com',
+    #     'PORT': '5432',
+    # }
 }
 
 # Password validation

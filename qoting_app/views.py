@@ -9,7 +9,7 @@ from .models import Question
 # Create your views here.
 def start_page(request):
     # Pull all 5 question from database
-    all_question = Question.objects.order_by()[:5]
+    all_question = Question.objects.all().order_by('?')[:8]
     # template = loader.get_template('qoting_app/startpage.html')
     context = {'all_question': all_question}
     # output = ', '.join([q.question for q in all_question])

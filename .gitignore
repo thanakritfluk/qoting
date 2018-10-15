@@ -50,7 +50,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 
-idea/
+.idea/
 venv/
 build/
 develop-eggs/
