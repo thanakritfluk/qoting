@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Page</title>
+</head>
+<body>
+<h1>Welcome to game</h1>
+<br>
+
+{% if all_question %}
+    <ul>
+        <h1>
+            Hello Ou master eiei
+        </h1>
+        {% for question in all_question %}
+            <li>
+                <a href="{% url 'qoting_app:start' %}">{{ question }}</a>
+            </li>
+        {% endfor %}
+
+    </ul>
+{% else %}
+    <p>No Question </p>
+{% endif %}
+
+Question1:
+<textarea cols="30" rows="2" name="Question1"> </textarea>
+<br>
+Question2:
+<textarea cols="30" rows="2" name="Question2"></textarea>
+
+</body>
+</html>

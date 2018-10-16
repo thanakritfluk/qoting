@@ -15,4 +15,4 @@ class UserDetail(models.Model):
     avatar = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.name, self.coin, self.avatar
+        return self.name

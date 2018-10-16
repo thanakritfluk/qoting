@@ -1,29 +1,15 @@
 <h1 align="center">
-    {% if all_question %}
-        <ul>
-            <h1>
-                Hello Ou master eiei
-            </h1>
-            {% for question in all_question %}
-                <li>
-                    <a href="{% url 'qoting_app:start' %}">{{ question }}</a>
-                </li>
-            {% endfor %}
 
-        </ul>
-    {% else %}
-        <p>No Question </p>
-    {% endif %}
-
-    <a href="{% url 'qoting_app:game' %}">
-        <input type="button" value="Start"/>
-    </a>
-    <br>
-    <a href="{% url 'qoting_app:shop' %}">
+    Qoting Game Version 1.0
+    <br><br/>
+    <form action="{% url 'qoting_app:game' %}">
+        <input type="submit" value="Start"/>
+    </form>
+    <form action="{% url 'qoting_app:shop' %}">
         <input type="button" value="Shop">
-    </a>
-    <br>
+    </form>
     <a>
         <input type="button" value="Exit">
     </a>
+
 </h1>
