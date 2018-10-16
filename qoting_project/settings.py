@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'qoting_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db83kp0auubcl1',
-        'USER': 'vcpkbevheumxgr',
-        'PASSWORD': '5c00e37102321b9fa7584f1e990aef3bfe43408bddd837a6968198e1c3a5cc9d',
-        'HOST': 'ec2-107-22-189-136.compute-1.amazonaws.com',
+        'NAME': 'd16tje5cc1s1lo',
+        'USER': 'ndqgzsifissaue',
+        'PASSWORD': '5643d9a7496e414ffdffcd5b8defbaa6162c8bcad5aa8781eaf4372093a3198d',
+        'HOST': 'ec2-184-73-197-211.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
