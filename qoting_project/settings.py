@@ -24,7 +24,7 @@ SECRET_KEY = '+y&7q(kzfgm(&yo9_$ihr%s(kpc8rilyw&f2nww^!7f-+!4(n5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['qoting.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['qoting-postgre.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
