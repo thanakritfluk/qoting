@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            position: absolute;
+            right: 10px;
+            top: 5px;
+        }
+    </style>
+</head>
+<body>
+{% csrf_token %}
+<div>
+    <button type="button" onclick="location.href='{% url 'qoting_app:logout' %}'">Logout</button>
+</div>
+Welcome {{ e }}
+
+</body>
+</html>
