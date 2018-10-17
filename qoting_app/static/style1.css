@@ -32,3 +32,11 @@
     width: 100vh;
     height: 100vh;
 }
+
+.homeButton {
+    width:20vh; 
+    height:10vh;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
