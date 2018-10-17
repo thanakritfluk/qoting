@@ -5,6 +5,7 @@ from django.contrib import auth
 import pyrebase
 
 # from django.template import loader
+# add firebase database to project
 config = {
     'apiKey': "AIzaSyAhTZR2XL8HadAZLEdV3t92-yArTXfMxEA",
     'authDomain': "qoting-29a05.firebaseapp.com",
