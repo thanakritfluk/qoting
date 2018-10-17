@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'qoting_project.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    #add postgre database
+    # add postgre database
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd16tje5cc1s1lo',
