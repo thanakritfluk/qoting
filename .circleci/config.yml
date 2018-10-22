@@ -1,0 +1,48 @@
+version: 2
+jobs:
+
+  test:
+    docker:
+    - image: circleci/python:3.7
+    working_directory: ~/repo
+    steps:
+    - checkout
+    - run:
+        name: Setup venv and installing dependencies
+        command: |
+          python3 -m venv venv
+          . venv/bin/activate
+          sudo pip install -r requirements.txt
+    - run:
+        name: Migrate database
+        command: |
+          . venv/bin/activate
+          python3 manage.py makemigrations
+          pyhton3 manage.py migrate
+    - run:
+        name: Run Tests
+        command: |
+          python3 manage.py test
+
+  deploy:
+    docker:
+    - image: circleci/python:3.7
+    working_directory: ~/repo
+    steps:
+    - checkout
+    - run:
+        name: Deploy to Heroku
+        command: |
+          git push https://heroku:9670c975-9db6-46cb-a221-e225be41c9a0@git.heroku.com/qoting-postgre.git master
+
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+    - test
+    - deploy:
+        requires:
+        - test
+        filters:
+          branches:
+            only: master

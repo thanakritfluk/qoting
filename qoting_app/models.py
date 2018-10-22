@@ -10,9 +10,11 @@ class Question(models.Model):
 
 
 class UserDetail(models.Model):
+    username = models.CharField(max_length=50, default='user')
+    password = models.CharField(max_length=20, default='pass')
     name = models.CharField(max_length=50)
     coin = models.IntegerField(default=0)
     avatar = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return f'{self.username}: {self.password}: {self.name}: {self.coin}: {self.avatar}'
