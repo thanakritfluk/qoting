@@ -33,7 +33,7 @@ jobs:
     - run:
         name: Deploy to Heroku
         command: |
-          git push https://heroku:9670c975-9db6-46cb-a221-e225be41c9a0@git.heroku.com/qoting-postgre.git master
+          git push https://heroku:$API_KEY@git.heroku.com/qoting-postgre.git master
 
 workflows:
   version: 2
