@@ -1,0 +1,27 @@
+{% if message %}
+    <script>
+        alert('{{ message }}')
+    </script>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+
+<form action="{% url 'qoting_app:postsignup' %}" method="post">
+    {% csrf_token %}
+    Name:
+    <input type="text" name="name">
+    <br>
+    Email:
+    <input type="email" name="email">
+    Password:
+    <input type="password" name = "passw">
+    <input type="submit" value="Signup">
+</form>
+
+</body>
+</html>
