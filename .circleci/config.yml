@@ -11,13 +11,13 @@ jobs:
         name: Setup venv and installing dependencies
         command: |
           python3 -m venv venv
-          ls venv
           . venv/bin/activate
           sudo pip install -r requirements.txt
     - run:
         name: Migrate database
         command: |
           . venv/bin/activate
+          sudo pip install -r requirements.txt
           python manage.py makemigrations
           python manage.py migrate
     - run:
