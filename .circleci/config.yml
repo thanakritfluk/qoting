@@ -17,6 +17,7 @@ jobs:
         name: Migrate database
         command: |
           . venv/bin/activate
+          ls
           python manage.py makemigrations
           pyhton manage.py migrate
     - run:
