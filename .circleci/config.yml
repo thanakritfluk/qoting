@@ -3,7 +3,7 @@ jobs:
 
   test:
     docker:
-    - image: circleci/python:3.6
+    - image: circleci/python:3.7
     working_directory: ~/repo
     steps:
     - checkout
@@ -11,6 +11,7 @@ jobs:
         name: Setup venv and installing dependencies
         command: |
           python3 -m venv venv
+          ls venv
           . venv/bin/activate
           sudo pip install -r requirements.txt
     - run:
