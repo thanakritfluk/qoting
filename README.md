@@ -1,5 +1,4 @@
 # Qoting Game (Voting and Quiz game)
-
 ### Webpage : [Qoting Game](https://qoting-postgre.herokuapp.com/)
 
 ## Sprint
