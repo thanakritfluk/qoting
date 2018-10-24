@@ -84,10 +84,8 @@ DATABASES = {
         # 'PASSWORD': '5643d9a7496e414ffdffcd5b8defbaa6162c8bcad5aa8781eaf4372093a3198d',
         # 'HOST': 'ec2-184-73-197-211.compute-1.amazonaws.com',
         # 'PORT': '5432',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'local',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -99,11 +97,11 @@ DATABASES = {
 #         'PASSWORD': '1234',
 #     }
 
-if 'test' in sys.argv:
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+# if 'test' in sys.argv:
+#     DATABASES['default'] = {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
 
 
 # Password validation
