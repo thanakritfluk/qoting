@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Question
 from django.contrib import auth
@@ -23,7 +23,7 @@ database = firebase.database()
 
 
 # Create your views here.
-def start_page(request):
+def welcome(request):
     return render(request, 'qoting_app/welcome.html')
 
 
