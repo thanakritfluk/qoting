@@ -1,4 +1,4 @@
-# Qoting Game (Voting and Quiz game)
+# Qoting Game (Voting and Quiz game) [![CircleCI](https://circleci.com/gh/thanakritfluk/qoting/tree/test_deploy.svg?style=svg)](https://circleci.com/gh/thanakritfluk/qoting/tree/test_deploy)
 
 ### Webpage : [Qoting Game](https://qoting-postgre.herokuapp.com/)
 
