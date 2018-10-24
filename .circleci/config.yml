@@ -3,7 +3,7 @@ jobs:
 
   test:
     docker:
-    - image: circleci/python:3.7
+    - image: circleci/python:3.6
     working_directory: ~/repo
     steps:
     - checkout
@@ -17,7 +17,6 @@ jobs:
         name: Migrate database
         command: |
           . venv/bin/activate
-          ls venv/lib/python3.7/site-packages
           python manage.py makemigrations
           python manage.py migrate
     - run:
