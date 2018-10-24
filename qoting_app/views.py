@@ -7,22 +7,24 @@ import pyrebase
 # from django.template import loader
 # add firebase database to project
 config = {
-    'apiKey': "AIzaSyAhTZR2XL8HadAZLEdV3t92-yArTXfMxEA",
-    'authDomain': "qoting-29a05.firebaseapp.com",
-    'databaseURL': "https://qoting-29a05.firebaseio.com",
-    'projectId': "qoting-29a05",
-    'storageBucket': "qoting-29a05.appspot.com",
-    'messagingSenderId': "191615697600"
+    'apiKey': "AIzaSyAioE3uCJP-KCBuA7d0JOCzR2u13qupGkY",
+    'authDomain': "qoting-1ca86.firebaseapp.com",
+    'databaseURL': "https://qoting-1ca86.firebaseio.com",
+    'projectId': "qoting-1ca86",
+    'storageBucket': "qoting-1ca86.appspot.com",
+    'messagingSenderId': "241026992000"
 }
 
 firebase = pyrebase.initialize_app(config)
 
 authe = firebase.auth()
 
+database = firebase.database()
+
 
 # Create your views here.
 def start_page(request):
-    return render(request, 'qoting_app/startpage.html')
+    return render(request, 'qoting_app/welcome.html')
 
 
 def shop_page(request):
@@ -53,15 +55,40 @@ def signIn(request):
 def postsign(request):
     email = request.POST.get('email')
     passw = request.POST.get('pass')
+    # User use variable that define from top.
     try:
         user = authe.sign_in_with_email_and_password(email, passw)
     except:
         message = "Invalid credentials"
-        return render(request, "qoting_app/signIn.html", {"messg": message})
-    # print(user)
+        return render(request, "qoting_app/signIn.html", {"message": message})
+    print(user['idToken'])
     session_id = user['idToken']
+    # Let web know that now auth with this session id
     request.session['uid'] = str(session_id)
     return render(request, "qoting_app/welcome.html", {"e": email})
+
+
+def signUp(request):
+    return render(request, "qoting_app/signup.html")
+
+
+def postsignup(request):
+    name = request.POST.get('name')
+    eamil = request.POST.get('email')
+    passw = request.POST.get('passw')
+    # print(str(passw))
+    # print("Len : ", len(str(passw)))
+    if len(str(passw)) < 6:
+        # print("IF")
+        massage = "Password should be at least 6 character"
+        return render(request, 'qoting_app/signup.html', {'message': massage})
+    else:
+        print("Else")
+        user = authe.create_user_with_email_and_password(eamil, passw)
+        uid = user['localId']
+        data = {"name": name, "avatar": '0', "coin": '0'}
+        database.child("user").child(uid).child("details").set(data)
+        return render(request, "qoting_app/signIn.html")
 
 
 def logout(request):

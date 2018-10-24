@@ -1,17 +1,15 @@
-{% if messg %}
+{% if message %}
     <script>
-        alert('{{ messg }}')
+        alert('{{ message }}')
     </script>
 {% endif %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign In</title>
+    <title>SignIn Form</title>
 </head>
 <body>
-
 <form action="{% url 'qoting_app:postsign' %}" method="post">
     {% csrf_token %}
     Email:
@@ -19,6 +17,8 @@
     Password:
     <input type="password" name="pass">
     <input type="submit" value="SignIn">
+
+    <button type="button" onclick="location.href = '{% url 'qoting_app:signup' %}'">Signup</button>
 </form>
 </body>
 </html>

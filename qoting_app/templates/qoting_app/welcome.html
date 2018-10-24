@@ -16,9 +16,9 @@
         <div>
             
         </div>
-        <button type="button" class="btn btn-outline-secondary homeButton" style="margin-top:15vh;">Start Game</button></br>
-        <button type="button" class="btn btn-outline-secondary homeButton" style="margin-top:5vh;">Shop</button></br>
-        <button type="button" class="btn btn-outline-secondary homeButton" style="margin-top:5vh;">Quit</button>
+        <button type="button" class="btn btn-outline-secondary homeButton" style="margin-top:15vh;" onclick="location.href = '{% url 'qoting_app:game' %}'">Start Game</button></br>
+        <button type="button" class="btn btn-outline-secondary homeButton" style="margin-top:5vh;" onclick="location.href = '{% url 'qoting_app:shop' %}'">Shop</button></br>
+        <button type="button" class="btn btn-outline-secondary homeButton" style="margin-top:5vh;" onclick="location.href = '{% url 'qoting_app:logout' %}'">Logout</button>
     </div> 
 </div>
 
