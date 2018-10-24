@@ -11,19 +11,16 @@ jobs:
         name: Setup venv and installing dependencies
         command: |
           python3 -m venv venv
-          . venv/bin/activate
-          sudo pip install -r requirements.txt
+          sudo pip3 install -r requirements.txt
     - run:
         name: Migrate database
         command: |
-          . venv/bin/activate
-          sudo pip install -r requirements.txt
-          python manage.py makemigrations
-          python manage.py migrate
+          python3 manage.py makemigrations
+          python3 manage.py migrate
     - run:
         name: Run Tests
         command: |
-          python manage.py test
+          python3 manage.py test
 
   deploy:
     docker:
