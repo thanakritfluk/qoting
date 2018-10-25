@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add question</title>
+</head>
+<body>
+
+<form action="{% url 'qoting_app:postaddquestion' %}" method="post">
+    {% csrf_token %}
+    Question :
+    <input type="text" name="question">
+    <input type="submit" value="Add">
+</form>
+
+
+</body>
+</html>
