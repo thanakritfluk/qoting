@@ -36,12 +36,13 @@ def waiting_page(request):
 
 
 def game_page(request):
+    return
     # Pull all 5 question from database
     # template = loader.get_template('qoting_app/startpage.html')
     # output = ', '.join([q.question for q in all_question])
     # all_question = Question.objects.all().order_by('?')[:8]
     # context = {'all_question': all_question}
-    return render(request, 'qoting_app/gamepage.html', context)
+    # return render(request, 'qoting_app/gamepage.html', context)
 
 
 def result_page(request):
