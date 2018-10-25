@@ -5,9 +5,11 @@
     <title>Add question</title>
 </head>
 <body>
-
+<button onclick="location.href = '{% url 'qoting_app:signin' %}'">Back</button>
 <form action="{% url 'qoting_app:postaddquestion' %}" method="post">
     {% csrf_token %}
+
+    <br>
     Question :
     <input type="text" name="question">
     <input type="submit" value="Add">

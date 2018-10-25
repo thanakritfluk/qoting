@@ -64,6 +64,7 @@ def postsign(request):
         return render(request, "qoting_app/signIn.html", {"message": message})
     session_id = user['idToken']
     # Let web know that now auth with this session id
+    authe.send_email_verification(user['idToken'])
     request.session['uid'] = str(session_id)
     return render(request, "qoting_app/welcome.html", {"e": email})
 
@@ -80,11 +81,15 @@ def postsignup(request):
         massage = "Password should be at least 6 character"
         return render(request, 'qoting_app/signup.html', {'message': massage})
     else:
-        user = authe.create_user_with_email_and_password(eamil, passw)
-        uid = user['localId']
-        data = {"name": name, "avatar": '0', "coin": '0'}
-        database.child("user").child(uid).child("details").set(data)
-        return render(request, "qoting_app/signIn.html")
+        try:
+            user = authe.create_user_with_email_and_password(eamil, passw)
+            uid = user['localId']
+            data = {"name": name, "avatar": '0', "coin": '0'}
+            database.child("user").child(uid).child("details").set(data)
+            return render(request, "qoting_app/signIn.html")
+        except:
+            message = "Email already exits"
+            return render(request, "qoting_app/signup.html", {"message": message})
 
 
 def logout(request):
