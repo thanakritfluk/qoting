@@ -14,9 +14,9 @@
 Sprint 1                        |   Sprint 2                                 |  Sprint 3
 --------------------------------|--------------------------------------------|-------------------------
 Testable UI                     | Fully functional gameplay except mutiplayer| Online mutiplayer
-- [x] Simple automated test ready            | Completed functional UI                    | Chat room
-- [x] GET PUT POST data from firebase | Bind account                               | UI with finished design
-- [x] Every thing deployed on heroku  |                                            |
+[x] Simple automated test ready            | Completed functional UI                    | Chat room
+[x] GET PUT POST data from firebase | Bind account                               | UI with finished design
+[x] Every thing deployed on heroku  |                                            |
 Login and Signup                |                                            |
 
 ## Developers
