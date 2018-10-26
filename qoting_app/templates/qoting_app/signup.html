@@ -13,6 +13,7 @@
 {% load static %}
 <script src="{% static 'scripts/signup.js' %}">
 </script>
+
 <form action="{% url 'qoting_app:postsignup' %}" method="post">
     {% csrf_token %}
     <button onclick="location.href = '{% url 'qoting_app:signin' %}'">Back</button>
@@ -24,7 +25,7 @@
     <input type="email" name="email" required>
     Password:
     <input id="password" type="password" name="passw" required>
-    <button onclick="show()">Show</button>
+    <button type="button" onclick="show()">Show</button>
     <input type="submit" value="Signup">
 </form>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
