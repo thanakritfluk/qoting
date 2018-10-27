@@ -49,7 +49,7 @@ def result_page(request):
 
 
 def signIn(request):
-    return render(request, "qoting_app/signIn.html")
+    return render(request, "qoting_app/login.html")
 
 
 def postsign(request):
