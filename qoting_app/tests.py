@@ -26,3 +26,12 @@ class TestingView(TestCase):
     def test_postaddquestion(self):
         response = self.client.get(reverse('qoting_app:postaddquestion'))
         self.assertEqual(response.status_code, 200)
+
+    # def test_postsignup(self):
+    #     response = self.client.get(reverse('qoting_app:postsignup'))
+    #     self.assertEqual(response.status_code, 200)
+
+    def test_postsign(self):
+        response = self.client.get(reverse('qoting_app:postsign'))
+        self.assertEqual(response.status_code, 200)
+
