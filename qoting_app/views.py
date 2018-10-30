@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Question
+# from .models import Question
 from django.contrib import auth
 import pyrebase
 
@@ -36,12 +36,13 @@ def waiting_page(request):
 
 
 def game_page(request):
+    return
     # Pull all 5 question from database
     # template = loader.get_template('qoting_app/startpage.html')
     # output = ', '.join([q.question for q in all_question])
-    all_question = Question.objects.all().order_by('?')[:8]
-    context = {'all_question': all_question}
-    return render(request, 'qoting_app/gamepage.html', context)
+    # all_question = Question.objects.all().order_by('?')[:8]
+    # context = {'all_question': all_question}
+    # return render(request, 'qoting_app/gamepage.html', context)
 
 
 def result_page(request):
@@ -61,9 +62,9 @@ def postsign(request):
     except:
         message = "Invalid credentials"
         return render(request, "qoting_app/signIn.html", {"message": message})
-    print(user['idToken'])
     session_id = user['idToken']
     # Let web know that now auth with this session id
+    authe.send_email_verification(user['idToken'])
     request.session['uid'] = str(session_id)
     return render(request, "qoting_app/welcome.html", {"e": email})
 
@@ -76,21 +77,32 @@ def postsignup(request):
     name = request.POST.get('name')
     eamil = request.POST.get('email')
     passw = request.POST.get('passw')
-    # print(str(passw))
-    # print("Len : ", len(str(passw)))
     if len(str(passw)) < 6:
-        # print("IF")
         massage = "Password should be at least 6 character"
         return render(request, 'qoting_app/signup.html', {'message': massage})
     else:
-        print("Else")
-        user = authe.create_user_with_email_and_password(eamil, passw)
-        uid = user['localId']
-        data = {"name": name, "avatar": '0', "coin": '0'}
-        database.child("user").child(uid).child("details").set(data)
-        return render(request, "qoting_app/signIn.html")
+        try:
+            user = authe.create_user_with_email_and_password(eamil, passw)
+            uid = user['localId']
+            data = {"name": name, "avatar": '0', "coin": '0'}
+            database.child("user").child(uid).child("details").set(data)
+            return render(request, "qoting_app/signIn.html")
+        except:
+            message = "Email already exits"
+            return render(request, "qoting_app/signup.html", {"message": message})
 
 
 def logout(request):
     auth.logout(request)
     return render(request, 'qoting_app/signIn.html')
+
+
+def addquestion(request):
+    return render(request, "qoting_app/addquestion.html")
+
+
+def postaddquestion(request):
+    question = request.POST.get('question')
+    data = {"detail": str(question)}
+    database.child("question").push(data)
+    return render(request, "qoting_app/addquestion.html")

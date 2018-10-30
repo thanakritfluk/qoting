@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Question, UserDetail
+# from .models import Question, UserDetail
 
 # Register your models here.
 
-admin.site.register(Question)
-admin.site.register(UserDetail)
+# admin.site.register(Question)
+# admin.site.register(UserDetail)
