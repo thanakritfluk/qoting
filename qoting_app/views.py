@@ -95,7 +95,7 @@ def postsignup(request):
 
 def logout(request):
     auth.logout(request)
-    return render(request, 'qoting_app/signIn.html')
+    return render(request, 'qoting_app/login.html')
 
 
 def addquestion(request):

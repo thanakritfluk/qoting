@@ -63,6 +63,7 @@ body {
 
 .button {
   display: block;
+  border: none;
   background-color: #234e85;
   width: 10%;
   height: 5%;
