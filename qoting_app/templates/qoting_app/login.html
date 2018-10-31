@@ -5,43 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Qoting</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+    
+    <title>login</title>
 </head>
 
 <body>
-    <div class="panel">
-        <ul class="panel_menu" id="nav">
-            <hr/>
-            <li id="signIn">
-                <a href="">SignIn</a>
-            </li>
-            <li id="signUp">
-                <a href="">SignUp</a>
-            </li>
-        </ul>
-        <div class="panel__wrap">
-            <div class="panel__box active" id="signInBox">
-                <label>Email
-                    <input type="email" />
-                </label>
-                <label>Password
-                    <input type="password" />
-                </label>
-                <input type="submit" />
+    <div class="overlay">
+        <div class="login-form">
+            <img src="{% static 'assets/logo.png' %}" width="100%">
+            <form action="">
+                <input class="input" type="email" name="email" placeholder="Email"><br />
+                <input class="input" type="password" name="pass" placeholder="Password"><br />
+                <div class="button input" type="submit" value="SignIn" style="margin-top:1%;">
+                    <span>Login</span>
+                    <div class="icon">
+                        <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="button" style="margin-top: 2%;">
+            <span>SignIn</span>
+            <div class="icon">
+                <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
             </div>
-            <div class="panel__box" id="signUpBox">
-                <label>Email
-                    <input type="email" />
-                </label>
-                <label>Password
-                    <input type="password" />
-                </label>
-                <label>Confirm password
-                    <input type="password" />
-                </label>
-                <input type="submit" />
+        </div>
+        <div class="button" style="margin-top: 6%;">
+            <span>Google</span>
+            <div class="icon">
+                <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+            </div>
+        </div>
+        <div class="button" style="margin-top: 10%;">
+            <span>Facebook</span>
+            <div class="icon">
+                <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
             </div>
         </div>
     </div>
