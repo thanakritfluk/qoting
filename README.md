@@ -26,4 +26,4 @@ ID           |           Name           |               Roles
 6010546699   |   Poonnanun Poonnopathum |  Scrum Master, Full Stack Developer
 6010545773   |   Thanakrit Daowrueang   |  Back-End Developer
 6010545846   |   Piyaphol Wiengperm     |  Back-End Developer
-6010545722   |   Katapon Sinpunyawong   |  Font-End Developer
+6010545722   |   Katapon Sinpunyawong   |  Font-End and Back-End Developer
