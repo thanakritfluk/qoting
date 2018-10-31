@@ -71,7 +71,7 @@ def postsign(request):
 
 
 def signUp(request):
-    return render(request, "qoting_app/signup.html")
+    return render(request, "qoting_app/login.html")
 
 
 def postsignup(request):
