@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <style>
+        .back{
+            width: 70%;
+            transition: 1s;
+        }
+        .back:hover {
+            width: 75%;
+            height: 75%;
+        }
+    </style>
+    <title>admin</title>
+</head>
+
+<body>
+    <div>
+        <div class="alert alert-dark" style="height:10vh">
+            <div class="row">
+                <div class="col-1">
+                    <button type="button" style="border: none; background: transparent;" onclick="location.href = '{% url 'qoting_app:logout' %}'">
+                        <img class="back" src="{% static 'assets/back.svg' %}" >
+                    </button>
+                </div>
+                <div class="col-11">
+                    <H1>Add Question</H1>
+                </div>
+            </div>
+        </div>
+        <form action="{% url 'qoting_app:postaddquestion' %}" method="post">
+            {% csrf_token %}
+            <img src="{% static 'assets/Q.svg' %}" alt="" width="5%">
+            <input type="text" placeholder="Question" style="margin-left:1% ; height: 5vh; border: 2px solid rgb(117, 117, 117);">
+            <button type="submit" class="btn btn-outline-dark" style="width:5%; margin-left: 1%; padding:0; height: 5vh;">
+                submit
+            </button>
+        </form>
+    </div>
+</body>
+
+</html>

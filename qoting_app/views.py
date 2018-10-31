@@ -71,7 +71,7 @@ def postsign(request):
 
 
 def signUp(request):
-    return render(request, "qoting_app/login.html")
+    return render(request, "qoting_app/signup.html")
 
 
 def postsignup(request):
@@ -87,7 +87,7 @@ def postsignup(request):
             uid = user['localId']
             data = {"name": name, "avatar": '0', "coin": '0'}
             database.child("user").child(uid).child("details").set(data)
-            return render(request, "qoting_app/signIn.html")
+            return render(request, "qoting_app/signup.html")
         except:
             message = "Email already exits"
             return render(request, "qoting_app/signup.html", {"message": message})
@@ -99,11 +99,11 @@ def logout(request):
 
 
 def addquestion(request):
-    return render(request, "qoting_app/addquestion.html")
+    return render(request, "qoting_app/admin.html")
 
 
 def postaddquestion(request):
     question = request.POST.get('question')
     data = {"detail": str(question)}
     database.child("question").push(data)
-    return render(request, "qoting_app/addquestion.html")
+    return render(request, "qoting_app/admin.html")

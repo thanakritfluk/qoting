@@ -1,3 +1,8 @@
+{% if message %}
+    <script>
+        alert('{{ message }}')
+    </script>
+{% endif %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +24,7 @@
                 {% csrf_token %}
                 <input class="input" type="email" name="email" placeholder="Email"><br />
                 <input class="input" type="password" name="pass" placeholder="Password"><br />
-                <button class="button input" type="submit" style="margin-top:1%;">
+                <button class="button" type="submit" style="margin-top:0.5vh;">
                     <span>Login</span>
                     <div class="icon">
                         <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
@@ -27,24 +32,25 @@
                 </button>
             </form>
         </div>
-        <div class="button" style="margin-top: 2%;">
+        <button class="button" style="margin-top: 2vh;" type="button" onclick="location.href = '{% url 'qoting_app:signup' %}'">
             <span>SignUp</span>
             <div class="icon">
                 <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
             </div>
-        </div>
-        <div class="button" style="margin-top: 6%;">
+        </button>
+        <button class="button" style="margin-top: 9vh;">
             <span>Google</span>
             <div class="icon">
                 <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
             </div>
-        </div>
-        <div class="button" style="margin-top: 10%;">
+        </button>
+        <button class="button" style="margin-top: 16vh;">
             <span>Facebook</span>
             <div class="icon">
                 <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
             </div>
-        </div>
+        </button>
+        <button class="admin" onclick="location.href = '{% url 'qoting_app:addquestion' %}'">Admin</button>
     </div>
 </body>
 
