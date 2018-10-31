@@ -15,15 +15,16 @@
     <div class="overlay">
         <div class="login-form">
             <img src="{% static 'assets/logo.png' %}" width="100%">
-            <form action="">
+            <form action="{% url 'qoting_app:postsign' %}" method="post">
+                {% csrf_token %}
                 <input class="input" type="email" name="email" placeholder="Email"><br />
                 <input class="input" type="password" name="pass" placeholder="Password"><br />
-                <div class="button input" type="submit" value="SignIn" style="margin-top:1%;">
+                <button class="button input" type="submit" style="margin-top:1%;">
                     <span>Login</span>
                     <div class="icon">
                         <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
                     </div>
-                </div>
+                </button>
             </form>
         </div>
         <div class="button" style="margin-top: 2%;">

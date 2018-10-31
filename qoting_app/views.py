@@ -60,7 +60,7 @@ def postsign(request):
         user = authe.sign_in_with_email_and_password(email, passw)
     except:
         message = "Invalid credentials"
-        return render(request, "qoting_app/signIn.html", {"message": message})
+        return render(request, "qoting_app/login.html", {"message": message})
     print(user['idToken'])
     session_id = user['idToken']
     # Let web know that now auth with this session id
