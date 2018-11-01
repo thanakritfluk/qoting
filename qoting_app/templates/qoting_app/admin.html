@@ -38,7 +38,7 @@
         <form action="{% url 'qoting_app:postaddquestion' %}" method="post">
             {% csrf_token %}
             <img src="{% static 'assets/Q.svg' %}" alt="" width="5%">
-            <input type="text" placeholder="Question" style="margin-left:1% ; height: 5vh; border: 2px solid rgb(117, 117, 117);">
+            <input type="text" name="question" placeholder="Question" style="margin-left:1% ; height: 5vh; border: 2px solid rgb(117, 117, 117);">
             <button type="submit" class="btn btn-outline-dark" style="width:5%; margin-left: 1%; padding:0; height: 5vh;">
                 submit
             </button>
