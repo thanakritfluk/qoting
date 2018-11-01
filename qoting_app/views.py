@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-# from .models import Question
 from django.contrib import auth
 import pyrebase
+import random
 
-# from django.template import loader
 # add firebase database to project
 config = {
     'apiKey': "AIzaSyAioE3uCJP-KCBuA7d0JOCzR2u13qupGkY",
@@ -17,12 +16,38 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 
-authe = firebase.auth()
+auth_fb = firebase.auth()
 
 database = firebase.database()
 
 
-# Create your views here.
+def admin(request):
+    try:
+        question_list = get_random_questions()
+        # print(question_list)
+        userid = auth_fb.current_user
+        localid = userid['localId']
+        nickname = database.child("user").child(str(localid)).child("details").child("name").get().val()
+        return render(request, 'qoting_app/admin.html',
+                      {"question_list": question_list, "localid": localid, "nickname": nickname})
+    except:
+        message = "Please login again"
+        return render(request, 'qoting_app/signIn.html', {"message": message})
+
+
+def get_random_questions():
+    question_list = []
+    inventory = database.child("question").get()
+    for question in inventory.each():
+        data = str(question.key())
+        # print(database.child("question").child(str(data)).child("detail").get().val())
+        question_list.append(database.child("question").child(str(data)).child("detail").get().val())
+    question_list = random.sample(question_list, 8)
+    return question_list
+
+    # Create your views here.
+
+
 def welcome(request):
     return render(request, 'qoting_app/welcome.html')
 
@@ -58,14 +83,14 @@ def postsign(request):
     passw = request.POST.get('pass')
     # User use variable that define from top.
     try:
-        user = authe.sign_in_with_email_and_password(email, passw)
+        user = auth_fb.sign_in_with_email_and_password(email, passw)
     except:
         message = "Invalid credentials"
         return render(request, "qoting_app/login.html", {"message": message})
     print(user['idToken'])
     session_id = user['idToken']
     # Let web know that now auth with this session id
-    authe.send_email_verification(user['idToken'])
+    # auth_fb.send_email_verification(user['idToken'])
     request.session['uid'] = str(session_id)
     return render(request, "qoting_app/welcome.html", {"e": email})
 
@@ -83,7 +108,7 @@ def postsignup(request):
         return render(request, 'qoting_app/signup.html', {'message': massage})
     else:
         try:
-            user = authe.create_user_with_email_and_password(eamil, passw)
+            user = auth_fb.create_user_with_email_and_password(eamil, passw)
             uid = user['localId']
             data = {"name": name, "avatar": '0', "coin": '0'}
             database.child("user").child(uid).child("details").set(data)
