@@ -99,11 +99,11 @@ def logout(request):
 
 
 def addquestion(request):
-    return render(request, "qoting_app/admin.html")
+    return render(request, "qoting_app/addquestion.html")
 
 
 def postaddquestion(request):
     question = request.POST.get('question')
     data = {"detail": str(question)}
     database.child("question").push(data)
-    return render(request, "qoting_app/admin.html")
+    return render(request, "qoting_app/addquestion.html")
