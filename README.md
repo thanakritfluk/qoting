@@ -13,11 +13,11 @@
 
 Sprint 1                        |   Sprint 2                                 |  Sprint 3
 --------------------------------|--------------------------------------------|-------------------------
-Testable UI                     | Fully functional gameplay| Chat room
-Simple automated test ready            | Completed functional UI                    | UI with finished design
-GET PUT POST data from firebase |                              | 
-Every thing deployed on heroku  |                                            |
-Login and Signup                |                                            |
+Testable UI                     | Assign room functional gameplay| 
+Simple automated test ready            | Voting function                    | UI with finished design
+GET PUSH data from firebase |      Get result score in the final page                       | Chat room
+Simple design page and sync with firebase deployed on heroku  | Final round for decide winner                                          |
+Login and Signup                |                  Completed functional UI                           |
 
 ## Developers
 
