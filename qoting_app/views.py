@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # from .models import Question
 from django.contrib import auth
+from django.views import generic
 import pyrebase
 
 # from django.template import loader
@@ -22,7 +23,6 @@ authe = firebase.auth()
 database = firebase.database()
 
 
-# Create your views here.
 def welcome(request):
     return render(request, 'qoting_app/welcome.html')
 
