@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
+
 class TestingView(TestCase):
 
     def test_welcome(self):
@@ -19,19 +20,6 @@ class TestingView(TestCase):
         response = self.client.get(reverse('qoting_app:logout'))
         self.assertEqual(response.status_code, 200)
 
-    def test_addquestion(self):
-        response = self.client.get(reverse('qoting_app:addquestion'))
-        self.assertEqual(response.status_code, 200)
-
-    def test_postaddquestion(self):
-        response = self.client.get(reverse('qoting_app:postaddquestion'))
-        self.assertEqual(response.status_code, 200)
-
-    # def test_postsignup(self):
-    #     response = self.client.get(reverse('qoting_app:postsignup'))
-    #     self.assertEqual(response.status_code, 200)
-
     def test_postsign(self):
         response = self.client.get(reverse('qoting_app:postsign'))
         self.assertEqual(response.status_code, 200)
-

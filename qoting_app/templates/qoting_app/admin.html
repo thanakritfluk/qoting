@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+<button type="button" onclick="location.href='{% url 'qoting_app:welcome' %}'">Back to Menu</button>
+<br>
+<h2>LocalId = {{ localid }} </h2>
+<h2>Nickname = {{ nickname }}</h2>
+<br>
+<h3>8 Question</h3>
+{% for question in question_list %}
+      {{ question }}
+    <br>
+{% endfor %}
+</body>
+</html>
