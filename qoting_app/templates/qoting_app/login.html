@@ -1,7 +1,7 @@
 {% if message %}
-    <script>
-        alert('{{ message }}')
-    </script>
+<script>
+    alert('{{ message }}')
+</script>
 {% endif %}
 <!DOCTYPE html>
 <html lang="en">
@@ -11,47 +11,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
-    
+    <link rel="stylesheet" type="text/css" href="{% static 'login1.css' %}">
+    <script>
+        function toRight() {
+            document.getElementById('box').className = 'box toRight';
+        }
+        function rightBack() {
+            document.getElementById('box').className = 'box rightBack';
+        }
+    </script>
     <title>login</title>
 </head>
 
 <body>
     <div class="overlay">
-        <div class="login-form">
-            <img src="{% static 'assets/logo.png' %}" width="100%">
-            <form action="{% url 'qoting_app:postsign' %}" method="post">
-                {% csrf_token %}
-                <input class="input" type="email" name="email" placeholder="Email"><br />
-                <input class="input" type="password" name="pass" placeholder="Password"><br />
-                <button class="button" type="submit" style="margin-top:0.5vh;">
-                    <span>Login</span>
+        <div class="box" id="box">
+            <div class="front">
+                <div class="login-form">
+                    <img src="{% static 'assets/logo.png' %}" width="100%">
+                    <form action="{% url 'qoting_app:postsign' %}" method="post">
+                        {% csrf_token %}
+                        <input class="input" type="email" name="email" placeholder="Email"><br />
+                        <input class="input" type="password" name="pass" placeholder="Password"><br />
+                        <button class="button input" type="submit" value="SignIn" style="background-color: rgb(34, 145, 20); margin-top:0.5vh; border:none;">
+                            <span>Login</span>
+                            <div class="icon">
+                                <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+                            </div>
+                        </button>
+                    </form>
+                </div>
+                <div class="button" style="margin-top: 2vh; background-color: rgb(138, 136, 32);" onclick="toRight()">
+                    <span>SignIn</span>
                     <div class="icon">
                         <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
                     </div>
-                </button>
-            </form>
+                </div>
+                <div class="button" style="margin-top: 9vh; background-color: rgb(156, 45, 17);">
+                    <span>Google</span>
+                    <div class="icon">
+                        <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+                    </div>
+                </div>
+                <div class="button" style="margin-top: 16vh; background-color: rgb(32, 62, 126);">
+                    <span>Facebook</span>
+                    <div class="icon">
+                        <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="login-form">
+                    <img src="{% static 'assets/signup.png' %}" width="100%">
+
+                    <form action="{% url 'qoting_app:postsignup' %}" method="post">
+                        {% csrf_token %}
+                        <input class="input" type="name" name="name" placeholder="Name"><br />
+                        <input class="input" type="email" name="email" placeholder="Email"><br />
+                        <input class="input" type="password" name="passw" placeholder="Password"><br /><br />
+                        <button class="button" style="background-color: rgb(86, 206, 56); left:-40%; border:none;">
+                            <span>Submit</span>
+                            <div class="icon">
+                                <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+                            </div>
+                        </button>
+                    </form>
+                    <div class="button" style="background-color: rgb(110, 32, 26); left:40%;" onclick="rightBack()">
+                        <span>Cancel</span>
+                        <div class="icon">
+                            <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="button" style="margin-top: 2vh;" type="button" onclick="location.href = '{% url 'qoting_app:signup' %}'">
-            <span>SignUp</span>
-            <div class="icon">
-                <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
-            </div>
-        </button>
-        <button class="button" style="margin-top: 9vh;">
-            <span>Google</span>
-            <div class="icon">
-                <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
-            </div>
-        </button>
-        <button class="button" style="margin-top: 16vh;">
-            <span>Facebook</span>
-            <div class="icon">
-                <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
-            </div>
-        </button>
-        <button class="admin" onclick="location.href = '{% url 'qoting_app:addquestion' %}'">Admin</button>
     </div>
+    <button class="admin" onclick="location.href = '{% url 'qoting_app:addquestion' %}'">Admin</button>
 </body>
 
 </html>
