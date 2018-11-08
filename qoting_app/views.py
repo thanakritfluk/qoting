@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import auth
-from django.views import generic
 import pyrebase
 import random
 
@@ -73,7 +72,7 @@ def result_page(request):
 
 
 def signIn(request):
-    return render(request, "qoting_app/signIn.html")
+    return render(request, "qoting_app/login.html")
 
 
 def postsign(request):
@@ -84,7 +83,8 @@ def postsign(request):
         user = auth_fb.sign_in_with_email_and_password(email, passw)
     except:
         message = "Invalid credentials"
-        return render(request, "qoting_app/signIn.html", {"message": message})
+        return render(request, "qoting_app/login.html", {"message": message})
+    print(user['idToken'])
     session_id = user['idToken']
     # Let web know that now auth with this session id
     # auth_fb.send_email_verification(user['idToken'])
@@ -109,7 +109,7 @@ def postsignup(request):
             uid = user['localId']
             data = {"name": name, "avatar": '0', "coin": '0'}
             database.child("user").child(uid).child("details").set(data)
-            return render(request, "qoting_app/signIn.html")
+            return render(request, "qoting_app/signup.html")
         except:
             message = "Email already exits"
             return render(request, "qoting_app/signup.html", {"message": message})
@@ -117,7 +117,7 @@ def postsignup(request):
 
 def logout(request):
     auth.logout(request)
-    return render(request, 'qoting_app/signIn.html')
+    return render(request, 'qoting_app/login.html')
 
 
 def addquestion(request):

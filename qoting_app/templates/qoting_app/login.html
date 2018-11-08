@@ -1,0 +1,57 @@
+{% if message %}
+    <script>
+        alert('{{ message }}')
+    </script>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+    
+    <title>login</title>
+</head>
+
+<body>
+    <div class="overlay">
+        <div class="login-form">
+            <img src="{% static 'assets/logo.png' %}" width="100%">
+            <form action="{% url 'qoting_app:postsign' %}" method="post">
+                {% csrf_token %}
+                <input class="input" type="email" name="email" placeholder="Email"><br />
+                <input class="input" type="password" name="pass" placeholder="Password"><br />
+                <button class="button" type="submit" style="margin-top:0.5vh;">
+                    <span>Login</span>
+                    <div class="icon">
+                        <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+                    </div>
+                </button>
+            </form>
+        </div>
+        <button class="button" style="margin-top: 2vh;" type="button" onclick="location.href = '{% url 'qoting_app:signup' %}'">
+            <span>SignUp</span>
+            <div class="icon">
+                <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+            </div>
+        </button>
+        <button class="button" style="margin-top: 9vh;">
+            <span>Google</span>
+            <div class="icon">
+                <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+            </div>
+        </button>
+        <button class="button" style="margin-top: 16vh;">
+            <span>Facebook</span>
+            <div class="icon">
+                <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+            </div>
+        </button>
+        <button class="admin" onclick="location.href = '{% url 'qoting_app:addquestion' %}'">Admin</button>
+    </div>
+</body>
+
+</html>
