@@ -3,10 +3,8 @@ from qoting_app import views
 
 app_name = 'qoting_app'
 urlpatterns = [
-    path('adminlogin/',views.adminlogin,name = 'adminlogin'),
-    path('adminpostsign',views.postadminlogin,name = 'adminpostsign'),
-
-
+    path('adminlogin/', views.adminlogin, name='adminlogin'),
+    path('adminpostsign', views.postadminlogin, name='adminpostsign'),
 
     path('', views.signIn, name='signin'),
     # path('admin/', views.admin, name="admin"),
@@ -15,8 +13,6 @@ urlpatterns = [
     path('postsignup/', views.postsignup, name='postsignup'),
     # path('addquestion/', views.addquestion, name='addquestion'),
     # path('postaddquestion/', views.postaddquestion, name="postaddquestion"),
-
-
 
     path('welcome/', views.welcome, name='welcome'),
     path('shop/', views.shop_page, name='shop'),
