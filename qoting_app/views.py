@@ -20,18 +20,30 @@ auth_fb = firebase.auth()
 
 database = firebase.database()
 
-def admin(request):
-    try:
-        question_list = get_random_questions()
-        # print(question_list)
-        userid = auth_fb.current_user
-        localid = userid['localId']
-        nickname = database.child("user").child(str(localid)).child("details").child("name").get().val()
-        return render(request, 'qoting_app/admin.html',
-                      {"question_list": question_list, "localid": localid, "nickname": nickname})
-    except:
-        message = "Please login again"
-        return render(request, 'qoting_app/signIn.html', {"message": message})
+
+# def admin(request):
+#     try:
+#         question_list = get_random_questions()
+#         # print(question_list)
+#         userid = auth_fb.current_user
+#         localid = userid['localId']
+#         nickname = database.child("user").child(str(localid)).child("details").child("name").get().val()
+#         return render(request, 'qoting_app/admin.html',
+#                       {"question_list": question_list, "localid": localid, "nickname": nickname})
+#     except:
+#         message = "Please login again"
+#         return render(request, 'qoting_app/signIn.html', {"message": message})
+
+def adminlogin(request):
+    return render(request, 'qoting_app/admin_login.html')
+
+
+def postadminlogin(request):
+    user = request.POST.get('admin_username')
+    passw = request.POST.get('admin_password')
+    adminfb = database.child('admin').child('root').get().val()
+    print(adminfb)
+    return render(request, 'qoting_app/admin_page.html')
 
 
 def get_random_questions():
@@ -44,7 +56,7 @@ def get_random_questions():
     question_list = random.sample(question_list, 8)
     return question_list
 
-    
+
 def welcome(request):
     return render(request, 'qoting_app/welcome.html')
 
@@ -54,17 +66,7 @@ def shop_page(request):
 
 
 def waiting_page(request):
-    return HttpResponse("Wait page")
-
-
-def game_page(request):
-    return
-    # Pull all 5 question from database
-    # template = loader.get_template('qoting_app/startpage.html')
-    # output = ', '.join([q.question for q in all_question])
-    # all_question = Question.objects.all().order_by('?')[:8]
-    # context = {'all_question': all_question}
-    # return render(request, 'qoting_app/gamepage.html', context)
+    return render(request, 'qoting_app/waiting_room.html')
 
 
 def result_page(request):
@@ -119,13 +121,13 @@ def logout(request):
     auth.logout(request)
     return render(request, 'qoting_app/login.html')
 
+#
+# def addquestion(request):
+#     return render(request, "qoting_app/addquestion.html")
 
-def addquestion(request):
-    return render(request, "qoting_app/addquestion.html")
 
-
-def postaddquestion(request):
-    question = request.POST.get('question')
-    data = {"detail": str(question)}
-    database.child("question").push(data)
-    return render(request, "qoting_app/addquestion.html")
+# def postaddquestion(request):
+#     question = request.POST.get('question')
+#     data = {"detail": str(question)}
+#     database.child("question").push(data)
+#     return render(request, "qoting_app/addquestion.html")
