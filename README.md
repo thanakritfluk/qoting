@@ -6,8 +6,9 @@ Qoting is a quiz competition game of 8 players. In a game, the system will rando
 1. clone project reposity
 2. Install [python3](https://www.python.org/downloads/) (download the latest version)
 3. In command line cd to project directory and `pip install -r requirements.txt`
-4. Then python3 manage.py runserver
-5. Go to provided ip or your localhost
+4. In command line `python3 collectstatic --noinput`
+5. Then python3 manage.py runserver
+6. Go to provided ip or your localhost
 
 ## Documents
 
@@ -20,8 +21,8 @@ Qoting is a quiz competition game of 8 players. In a game, the system will rando
 
 Sprint 1                        |   Sprint 2                                 |  Sprint 3
 --------------------------------|--------------------------------------------|-------------------------
-Testable UI                     | Assign room functional gameplay| 
-Simple automated test ready            | Voting function                    | UI with finished design
+Testable UI                     | Assign room functional gameplay| Game with fully functional
+Simple automated test ready            | Voting function                    | Game ui with finished design
 GET PUSH data from firebase |      Get result score in the final page                       | Chat room
 Simple design page and sync with firebase deployed on heroku  | Final round for decide winner                                          |
 Login and Signup                |                  Completed functional UI                           |
