@@ -86,7 +86,7 @@ def postsign(request):
     except:
         message = "Invalid credentials"
         return render(request, "qoting_app/login.html", {"message": message})
-    print(user['idToken'])
+    # print(user['idToken'])
     session_id = user['idToken']
     # Let web know that now auth with this session id
     # auth_fb.send_email_verification(user['idToken'])
