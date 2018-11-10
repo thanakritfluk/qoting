@@ -23,3 +23,4 @@ class TestingView(TestCase):
     def test_postsign(self):
         response = self.client.get(reverse('qoting_app:postsign'))
         self.assertEqual(response.status_code, 200)
+
