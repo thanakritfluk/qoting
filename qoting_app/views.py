@@ -121,7 +121,6 @@ def logout(request):
     auth.logout(request)
     return render(request, 'qoting_app/login.html')
 
-#
 # def addquestion(request):
 #     return render(request, "qoting_app/addquestion.html")
 

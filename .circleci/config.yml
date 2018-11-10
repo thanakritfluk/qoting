@@ -20,6 +20,7 @@ jobs:
     - run:
         name: Run Tests
         command: |
+          python3 manage.py collectstatic
           python3 manage.py test
 
   deploy:
