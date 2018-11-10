@@ -7,8 +7,16 @@ var config = {
     messagingSenderId: "241026992000"
 };
 firebase.initializeApp(config);
-
+// const functions = require('firebase-functions');
 var dbRef = firebase.database();
+var room1 = document.querySelector('room1');
+var room2 = document.querySelector('room2');
+var room3 = document.querySelector('room3');
+var room4 = document.querySelector('room4');
+var room5 = document.querySelector('room5');
+var room6 = document.querySelector('room6');
+var room7 = document.querySelector('room7');
+var room8 = document.querySelector('room8');
 
 
 function counter() {
@@ -33,9 +41,79 @@ function show() {
 
 
 window.onload = function () {
-    showAllUser();
+    initilizePeopleCount();
+    onUpdatePeopleCount();
+    // showAllUser();
     // showallQuestion();
 };
+
+function initilizePeopleCount() {
+
+}
+
+function onUpdatePeopleCount() {
+    var myRef = dbRef.ref('room/1');
+    myRef.on('child_changed', function (snapshot) {
+        data = snapshot.val();
+        console.log("Now: " + data);
+        room1.innerHTML = data + "/8"
+    });
+    myRef = dbRef.ref('room/2');
+    myRef.on('child_changed', function (snapshot) {
+        data = snapshot.val();
+        console.log("Now: " + data);
+        room2.innerHTML = data + "/8"
+    });
+    myRef = dbRef.ref('room/3');
+    myRef.on('child_changed', function (snapshot) {
+        data = snapshot.val();
+        console.log("Now: " + data);
+        room3.innerHTML = data + "/8"
+    });
+    myRef = dbRef.ref('room/4');
+    myRef.on('child_changed', function (snapshot) {
+        data = snapshot.val();
+        console.log("Now: " + data);
+        room4.innerHTML = data + "/8"
+    });
+    myRef = dbRef.ref('room/5');
+    myRef.on('child_changed', function (snapshot) {
+        data = snapshot.val();
+        console.log("Now: " + data);
+        room5.innerHTML = data + "/8"
+    });
+    myRef = dbRef.ref('room/6');
+    myRef.on('child_changed', function (snapshot) {
+        data = snapshot.val();
+        console.log("Now: " + data);
+        room6.innerHTML = data + "/8"
+    });
+    myRef = dbRef.ref('room/7');
+    myRef.on('child_changed', function (snapshot) {
+        data = snapshot.val();
+        console.log("Now: " + data);
+        room7.innerHTML = data + "/8"
+    });
+    myRef = dbRef.ref('room/8');
+    myRef.on('child_changed', function (snapshot) {
+        data = snapshot.val();
+        console.log("Now: " + data);
+        room8.innerHTML = data + "/8"
+    });
+
+}
+
+//
+// function currentUser(ref_room) {
+//     myRef = dbRef.ref('room/' + ref_room);
+//     myRef.on('child_changed', function (snapshot) {
+//         data = snapshot.val();
+//         console.log("Now: " + data);
+//         return data
+//         // room1.innerHTML = data + "/8"
+//     });
+// }
+
 
 function showAllUser() {
     var data = dbRef.ref("user").orderByKey();
