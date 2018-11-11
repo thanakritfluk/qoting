@@ -41,78 +41,54 @@ function show() {
 
 
 window.onload = function () {
-    initilizePeopleCount();
+    initilizePeopleCount("1");
     onUpdatePeopleCount();
     // showAllUser();
     // showallQuestion();
 };
 
 function initilizePeopleCount() {
-
+    getCurrentUser("1", room1);
+    getCurrentUser("2", room2);
+    getCurrentUser("3", room3);
+    getCurrentUser("4", room4);
+    getCurrentUser("5", room5);
+    getCurrentUser("6", room6);
+    getCurrentUser("7", room7);
+    getCurrentUser("8", room8);
 }
 
 function onUpdatePeopleCount() {
-    var myRef = dbRef.ref('room/1');
-    myRef.on('child_changed', function (snapshot) {
-        data = snapshot.val();
-        console.log("Now: " + data);
-        room1.innerHTML = data + "/8"
-    });
-    myRef = dbRef.ref('room/2');
-    myRef.on('child_changed', function (snapshot) {
-        data = snapshot.val();
-        console.log("Now: " + data);
-        room2.innerHTML = data + "/8"
-    });
-    myRef = dbRef.ref('room/3');
-    myRef.on('child_changed', function (snapshot) {
-        data = snapshot.val();
-        console.log("Now: " + data);
-        room3.innerHTML = data + "/8"
-    });
-    myRef = dbRef.ref('room/4');
-    myRef.on('child_changed', function (snapshot) {
-        data = snapshot.val();
-        console.log("Now: " + data);
-        room4.innerHTML = data + "/8"
-    });
-    myRef = dbRef.ref('room/5');
-    myRef.on('child_changed', function (snapshot) {
-        data = snapshot.val();
-        console.log("Now: " + data);
-        room5.innerHTML = data + "/8"
-    });
-    myRef = dbRef.ref('room/6');
-    myRef.on('child_changed', function (snapshot) {
-        data = snapshot.val();
-        console.log("Now: " + data);
-        room6.innerHTML = data + "/8"
-    });
-    myRef = dbRef.ref('room/7');
-    myRef.on('child_changed', function (snapshot) {
-        data = snapshot.val();
-        console.log("Now: " + data);
-        room7.innerHTML = data + "/8"
-    });
-    myRef = dbRef.ref('room/8');
-    myRef.on('child_changed', function (snapshot) {
-        data = snapshot.val();
-        console.log("Now: " + data);
-        room8.innerHTML = data + "/8"
-    });
-
+    setOnUpdateCurrentUser('1', room1);
+    setOnUpdateCurrentUser('2', room2);
+    setOnUpdateCurrentUser('3', room3);
+    setOnUpdateCurrentUser('4', room4);
+    setOnUpdateCurrentUser('5', room5);
+    setOnUpdateCurrentUser('6', room6);
+    setOnUpdateCurrentUser('7', room7);
+    setOnUpdateCurrentUser('8', room8);
 }
 
-//
-// function currentUser(ref_room) {
-//     myRef = dbRef.ref('room/' + ref_room);
-//     myRef.on('child_changed', function (snapshot) {
-//         data = snapshot.val();
-//         console.log("Now: " + data);
-//         return data
-//         // room1.innerHTML = data + "/8"
-//     });
-// }
+
+function getCurrentUser(ref_url, room) {
+    var data = dbRef.ref("room/" + ref_url);
+    data.once('value').then(function (dataSnapshot) {
+        dataSnapshot.forEach(function (childSnapshot) {
+            var childData = childSnapshot.val();
+            room.innerHTML = childData + "/8";
+        });
+    });
+}
+
+
+function setOnUpdateCurrentUser(ref_room, ref_html) {
+    myRef = dbRef.ref('room/' + ref_room);
+    myRef.on('child_changed', function (snapshot) {
+        data = snapshot.val();
+        console.log("Now: " + data);
+        ref_html.innerHTML = data + "/8"
+    });
+}
 
 
 function showAllUser() {
