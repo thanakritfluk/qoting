@@ -2,6 +2,18 @@
 Qoting is a quiz competition game of 8 players. In a game, the system will randomize questions for every player - 2 questions for each person and 2 players will have the same question. After every player receives their question, they must answer the question within a fixed time. In the next step, players vote for a winner by voting for the best answer. If one player’s answer  more votes than other answers then he receives a scores for that round. The game continues until the first player to get 100 points be the winner of the game.
 ### Webpage : [Qoting Game](https://qoting-postgre.herokuapp.com/)
 
+## Prerequisite
+
+You must install the followings to be able to run.
+
+- `Python`  [download](https://www.python.org/downloads/)
+- `Heroku`  [download](https://devcenter.heroku.com/articles/heroku-cli)
+- `Django` can be install by the command line using [pip](https://www.makeuseof.com/tag/install-pip-for-python/)
+
+```
+pip install django
+```
+
 ## Introduction of install and run locally
 1. clone project reposity
 2. Install [python3](https://www.python.org/downloads/) (download the latest version)
