@@ -7,7 +7,6 @@ var config = {
     messagingSenderId: "241026992000"
 };
 firebase.initializeApp(config);
-// const functions = require('firebase-functions');
 var dbRef = firebase.database();
 var room1 = document.querySelector('room1');
 var room2 = document.querySelector('room2');
@@ -41,21 +40,22 @@ function show() {
 
 
 window.onload = function () {
-    initilizePeopleCount("1");
+    initilizePeopleCount();
     onUpdatePeopleCount();
+    // assignPeople("1")
     // showAllUser();
     // showallQuestion();
 };
 
 function initilizePeopleCount() {
-    getCurrentUser("1", room1);
-    getCurrentUser("2", room2);
-    getCurrentUser("3", room3);
-    getCurrentUser("4", room4);
-    getCurrentUser("5", room5);
-    getCurrentUser("6", room6);
-    getCurrentUser("7", room7);
-    getCurrentUser("8", room8);
+    setCurrentUser("1", room1);
+    setCurrentUser("2", room2);
+    setCurrentUser("3", room3);
+    setCurrentUser("4", room4);
+    setCurrentUser("5", room5);
+    setCurrentUser("6", room6);
+    setCurrentUser("7", room7);
+    setCurrentUser("8", room8);
 }
 
 function onUpdatePeopleCount() {
@@ -70,8 +70,8 @@ function onUpdatePeopleCount() {
 }
 
 
-function getCurrentUser(ref_url, room) {
-    var data = dbRef.ref("room/" + ref_url);
+function setCurrentUser(ref_room, room) {
+    var data = dbRef.ref("room/" + ref_room);
     data.once('value').then(function (dataSnapshot) {
         dataSnapshot.forEach(function (childSnapshot) {
             var childData = childSnapshot.val();
@@ -81,11 +81,36 @@ function getCurrentUser(ref_url, room) {
 }
 
 
+function getCurrentUser(ref_room) {
+    var data = dbRef.ref("room/" + ref_room);
+    var user;
+    data.once('value').then(function (dataSnapshot) {
+        user = dataSnapshot.numChildren();
+        console.log(dataSnapshot.numChildren());
+    });
+    return user;
+}
+
+function joinRoom(ref_room) {
+    var room_count_ref = dbRef.ref().child('room/' + ref_room + '/count');
+    var room_assign_ref = dbRef.ref().child();
+    room_count_ref.transaction(function (current_value) {
+        if (current_value < 8) {
+            console.log("Curent user: " + (current_value + 1));
+
+            return (current_value || 0) + 1
+        } else {
+            alert("This room is now playing,Pls select another room")
+        }
+
+    })
+}
+
+
 function setOnUpdateCurrentUser(ref_room, ref_html) {
     myRef = dbRef.ref('room/' + ref_room);
     myRef.on('child_changed', function (snapshot) {
         data = snapshot.val();
-        console.log("Now: " + data);
         ref_html.innerHTML = data + "/8"
     });
 }
@@ -137,42 +162,3 @@ function updateQuestion(question, newquestion) {
     })
 
 }
-
-// <html>
-// <head>
-// <style>
-// span {
-//   text-align: center;
-//   font-size: 60px;
-//   margin-top: 0px;
-// }
-// </style>
-// </head>
-// <body>
-// <span id="remain"></span>
-// <form action="3.php" method="post" id="answer" name="answer">
-// 	<input type="text" name="id">
-// 	<input type="submit" name="Go" value="submit">
-// </form>
-// <script type="text/javascript">
-// window.onload=counter;
-// function counter()
-// {
-// seconds = 60;
-// countDown();
-// }
-//
-// function countDown(){
-// document.getElementById("remain").innerHTML="Time Left: " + seconds;
-// setTimeout("countDown()",1000);
-// 	if(seconds == 0)
-// 		{
-// 			document.answer.submit();
-// 		}else {
-// 		    seconds--;
-// 		}
-// }
-//
-// </script>
-// </body>
-// </html>
