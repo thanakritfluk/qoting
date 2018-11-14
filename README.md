@@ -18,7 +18,7 @@ pip install django
 1. clone project reposity
 2. Install [python3](https://www.python.org/downloads/) (download the latest version)
 3. In command line cd to project directory and `pip install -r requirements.txt`
-4. In command line `python3 collectstatic --noinput`
+4. In command line `python3 manage.py collectstatic --noinput`
 5. Then python3 manage.py runserver
 6. Go to provided ip or your localhost
 
