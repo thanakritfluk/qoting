@@ -20,6 +20,8 @@ auth_fb = firebase.auth()
 
 database = firebase.database()
 
+localId = ''
+
 
 # def admin(request):
 #     try:
@@ -51,7 +53,6 @@ def get_random_questions():
     inventory = database.child("question").get()
     for question in inventory.each():
         data = str(question.key())
-        # print(database.child("question").child(str(data)).child("detail").get().val())
         question_list.append(database.child("question").child(str(data)).child("detail").get().val())
     question_list = random.sample(question_list, 8)
     return question_list
@@ -66,6 +67,7 @@ def shop_page(request):
 
 
 def waiting_page(request):
+    print(request.session['uid'])
     return render(request, 'qoting_app/waiting_room.html')
 
 
@@ -86,10 +88,8 @@ def postsign(request):
     except:
         message = "Invalid credentials"
         return render(request, "qoting_app/login.html", {"message": message})
-    # print(user['idToken'])
     session_id = user['idToken']
     # Let web know that now auth with this session id
-    # auth_fb.send_email_verification(user['idToken'])
     request.session['uid'] = str(session_id)
     return render(request, "qoting_app/welcome.html", {"e": email})
 
@@ -120,6 +120,17 @@ def postsignup(request):
 def logout(request):
     auth.logout(request)
     return render(request, 'qoting_app/login.html')
+
+
+def game_play(request):
+    try:
+        userid = auth_fb.current_user
+        localid = userid['localId']
+        nickname = database.child("user").child(str(localid)).child("details").child("name").get().val()
+        return render(request, 'qoting_app/gameplay.html', {'localid': localid, 'nickname': nickname})
+    except:
+        message = "Please login again"
+        return render(request, 'qoting_app/login.html', {'message': message})
 
 # def addquestion(request):
 #     return render(request, "qoting_app/addquestion.html")

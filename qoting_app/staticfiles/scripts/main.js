@@ -42,9 +42,6 @@ function show() {
 window.onload = function () {
     initilizePeopleCount();
     onUpdatePeopleCount();
-    // assignPeople("1")
-    // showAllUser();
-    // showallQuestion();
 };
 
 function initilizePeopleCount() {
@@ -93,11 +90,9 @@ function getCurrentUser(ref_room) {
 
 function joinRoom(ref_room) {
     var room_count_ref = dbRef.ref().child('room/' + ref_room + '/count');
-    var room_assign_ref = dbRef.ref().child();
     room_count_ref.transaction(function (current_value) {
         if (current_value < 8) {
-            console.log("Curent user: " + (current_value + 1));
-
+            
             return (current_value || 0) + 1
         } else {
             alert("This room is now playing,Pls select another room")

@@ -17,6 +17,6 @@ urlpatterns = [
     path('welcome/', views.welcome, name='welcome'),
     path('shop/', views.shop_page, name='shop'),
     path('waiting/', views.waiting_page, name='waiting'),
-    # path('game/', views.game_page, name='game'),
+    path('game_play/', views.game_play, name='gameplay'),
     path('result/', views.result_page, name='result'),
 ]
