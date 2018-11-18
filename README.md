@@ -15,6 +15,7 @@ Qoting is a quiz competition game of 8 players. In a game, the system will rando
 - Design Board - [Mockingbot](https://mockingbot.in/app/gKG93IyiYY4PIaKeLOYHpRuXI8VgwvS)
 - Task Board - [Kanban](https://github.com/thanakritfluk/qoting/projects/1)  
 - Issue Tracker - [Github issues](https://github.com/thanakritfluk/qoting/issues)
+- Iteration Plan - [Github wiki](https://github.com/thanakritfluk/qoting/wiki/Iteration-plan)
 
 
 ## Sprint
