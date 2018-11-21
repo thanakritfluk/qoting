@@ -10,7 +10,7 @@ class TestingWeb(TestCase):
         options.add_argument('--ignore-certificate-errors')
         options.add_argument("--test-type")
 
-        driver = webdriver.Chrome()
+        driver = webdriver.Chrome('chromedriver')
         driver.get('https://qoting-postgre.herokuapp.com')
         email = driver.find_element_by_name('email')
         passw = driver.find_element_by_name('pass')
