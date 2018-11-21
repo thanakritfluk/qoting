@@ -116,6 +116,12 @@ def postsignup(request):
             message = "Email already exits"
             return render(request, "qoting_app/login.html", {"message": message})
 
+def googleSignin(request):
+    return render(request, "qoting_app/login.html", {"message": message})
+
+def facebookSignin(request):
+    return render(request, "qoting_app/login.html", {"message": message})
+
 
 def logout(request):
     auth.logout(request)

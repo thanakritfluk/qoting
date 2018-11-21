@@ -12,13 +12,67 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'login1.css' %}">
+    
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
     <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAioE3uCJP-KCBuA7d0JOCzR2u13qupGkY",
+            authDomain: "qoting-1ca86.firebaseapp.com",
+            databaseURL: "https://qoting-1ca86.firebaseio.com",
+            projectId: "qoting-1ca86",
+            storageBucket: "qoting-1ca86.appspot.com",
+            messagingSenderId: "241026992000"
+        };
+        firebase.initializeApp(config); 
+    
         function toRight() {
             document.getElementById('box').className = 'box toRight';
         }
         function rightBack() {
             document.getElementById('box').className = 'box rightBack';
         }
+        //Google signin
+        var googleprovider = new firebase.auth.GoogleAuthProvider();
+        function googleSignin() {
+            firebase.auth().signInWithPopup(googleprovider).then(function(result) {
+                var token = result.credential.accessToken;
+                var user = result.user;
+
+                console.log(token)
+                console.log(user)
+            }).catch(function(error){
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+
+                console.log(error.code)
+            });
+        }
+
+        //facebook signin
+        var facebookprovider = new firebase.auth.FacebookAuthProvider();
+        function facebookSignin() {
+            firebase.auth().signInWithPopup(facebookprovider).then(function(result) {
+                var token = result.credential.accessToken;
+                var user = result.user;
+
+                console.log(token)
+                console.log(user)
+            }).catch(function(error){
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                console.log(error.code)
+            });
+        }
+        
     </script>
     <title>login</title>
 </head>
@@ -47,17 +101,23 @@
                         <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
                     </div>
                 </div>
-                <div class="button" style="margin-top: 11vh; background-color: rgb(156, 45, 17);">
-                    <span>Google</span>
-                    <div class="icon">
-                        <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
-                    </div>
+                <div name="googleSignin" class="button" style="margin-top: 11vh; background-color: rgb(156, 45, 17);" onclick="googleSignin()">
+                    <form action="{% url 'qoting_app:googleSignin' %}" method="post">
+                        {% csrf_token %}
+                        <span>Google</span>
+                        <div class="icon">
+                            <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+                        </div>
+                    </form>
                 </div>
-                <div class="button" style="margin-top: 18vh; background-color: rgb(32, 62, 126);">
-                    <span>Facebook</span>
-                    <div class="icon">
-                        <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
-                    </div>
+                <div name="facebookSignin" class="button" style="margin-top: 18vh; background-color: rgb(32, 62, 126);" onclick="facebookSignin()">
+                    <form action="{% url 'qoting_app:facebookSignin' %}" method="post">
+                        {% csrf_token %}
+                        <span>Facebook</span>
+                        <div class="icon">
+                            <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="right">
