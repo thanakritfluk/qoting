@@ -5,3 +5,4 @@ psycopg2==2.7.5
 psycopg2-binary==2.7.5
 Pyrebase4==4.1.0
 javascript==2015.32.59
+selenium==3.141.0
