@@ -113,7 +113,7 @@ def postsignup(request):
             database.child("user").child(uid).child("details").set(data)
             return render(request, "qoting_app/login.html")
         except:
-            message = "Email already exits"
+            message = "Email already exist"
             return render(request, "qoting_app/login.html", {"message": message})
 
 
