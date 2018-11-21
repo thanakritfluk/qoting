@@ -21,7 +21,7 @@ jobs:
         name: Run Tests
         command: |
           python3 manage.py collectstatic
-          python3 manage.py test tests
+          python3 manage.py test qoting/tests
 
   deploy:
     docker:
