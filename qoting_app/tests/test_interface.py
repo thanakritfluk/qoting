@@ -11,7 +11,7 @@ class TestingWeb(TestCase):
         options.add_argument("--test-type")
 
     def test_sign_in(self):
-        driver = webdriver.Chrome('chromedriver')
+        driver = webdriver.Chrome(executable_path='chromedriver')
         driver.get('https://qoting-postgre.herokuapp.com')
         email = driver.find_element_by_name('email')
         passw = driver.find_element_by_name('pass')
@@ -22,7 +22,7 @@ class TestingWeb(TestCase):
         driver.close()
 
     def test_sign_up(self):
-        driver = webdriver.Chrome('chromedriver')
+        driver = webdriver.Chrome(executable_path='chromedriver')
         driver.get('https://qoting-postgre.herokuapp.com')
 
         driver.find_element_by_xpath('//div/div/div/div[2]').click()
