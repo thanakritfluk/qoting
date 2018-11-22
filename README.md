@@ -13,26 +13,16 @@ Qoting is a quiz competition game of 8 players. In a game, the system will rando
 ## Documents
 
 - Design Board - [Mockingbot](https://mockingbot.in/app/gKG93IyiYY4PIaKeLOYHpRuXI8VgwvS)
-- Task Board - [Kanban](https://github.com/thanakritfluk/qoting/projects/1)  
+- Task Board - [Trello](https://trello.com/b/pqINZU2E/qoting)  
 - Issue Tracker - [Github issues](https://github.com/thanakritfluk/qoting/issues)
 - Iteration Plan - [Github wiki](https://github.com/thanakritfluk/qoting/wiki/Iteration-plan)
 
 
-## Sprint
-
-Sprint 1                        |   Sprint 2                                 |  Sprint 3
---------------------------------|--------------------------------------------|-------------------------
-Testable UI                     | Assign room functional gameplay| Game with fully functional
-Simple automated test ready            | Voting function                    | Game ui with finished design
-GET PUSH data from firebase |      Get result score in the final page                       | Chat room
-Simple design page and sync with firebase deployed on heroku  | Final round for decide winner                                          |
-Login and Signup                |                  Completed functional UI                           |
-
 ## Developers
 
-ID           |           Name           |               Roles
+Github repo           |           Name           |               Roles
 -------------|--------------------------|-------------------------------------
-6010546699   |   Poonnanun Poonnopathum |  Scrum Master, Full Stack Developer
-6010545773   |   Thanakrit Daowrueang   |  Back-End Developer
-6010545846   |   Piyaphol Wiengperm     |  Back-End Developer
-6010545722   |   Katapon Sinpunyawong   |  Font-End and Back-End Developer
+[poonnanun](https://github.com/poonnanun)  |   Poonnanun Poonnopathum |  Scrum Master, Full Stack Developer
+[thanakritfluk](https://github.com/thanakritfluk)    |   Thanakrit Daowrueang   |  Back-End Developer
+[piyaspark](https://github.com/piyaspark)    |   Piyaphol Wiengperm     |  Back-End Developer
+[cynic4018](https://github.com/cynic4018)   |   Katapon Sinpunyawong   |  Font-End and Back-End Developer
