@@ -67,8 +67,13 @@ def shop_page(request):
 
 
 def waiting_page(request):
-    print(request.session['uid'])
-    return render(request, 'qoting_app/waiting_room.html')
+    try:
+        userid = auth_fb.current_user
+        localid = userid['localId']
+        return render(request, 'qoting_app/waiting_room.html', {"user":userid, "id":localid})
+    except:
+        message = "Please login again"
+        return render(request, 'qoting_app/login.html', {'message': message})
 
 
 def result_page(request):

@@ -8,15 +8,19 @@ var config = {
 };
 firebase.initializeApp(config);
 var dbRef = firebase.database();
-var room1 = document.querySelector('room1');
-var room2 = document.querySelector('room2');
-var room3 = document.querySelector('room3');
-var room4 = document.querySelector('room4');
-var room5 = document.querySelector('room5');
-var room6 = document.querySelector('room6');
-var room7 = document.querySelector('room7');
-var room8 = document.querySelector('room8');
+var userid = "";
+var room1;
+var room2;
+var room3;
+var room4;
+var room5;
+var room6;
+var room7;
+var room8;
 
+function init(id) {
+    userid = id;
+}
 
 function counter() {
     seconds = 60;
@@ -40,9 +44,22 @@ function show() {
 
 
 window.onload = function () {
+    initializeParam();
     initilizePeopleCount();
     onUpdatePeopleCount();
+
 };
+
+function initializeParam() {
+    room1 = document.querySelector('room1');
+    room2 = document.querySelector('room2');
+    room3 = document.querySelector('room3');
+    room4 = document.querySelector('room4');
+    room5 = document.querySelector('room5');
+    room6 = document.querySelector('room6');
+    room7 = document.querySelector('room7');
+    room8 = document.querySelector('room8');
+}
 
 function initilizePeopleCount() {
     setCurrentUser("1", room1);
@@ -66,7 +83,6 @@ function onUpdatePeopleCount() {
     setOnUpdateCurrentUser('8', room8);
 }
 
-
 function setCurrentUser(ref_room, room) {
     var data = dbRef.ref("room/" + ref_room);
     data.once('value').then(function (dataSnapshot) {
@@ -89,15 +105,18 @@ function getCurrentUser(ref_room) {
 }
 
 function joinRoom(ref_room) {
-    var room_count_ref = dbRef.ref().child('room/' + ref_room + '/count');
-    room_count_ref.transaction(function (current_value) {
+    var room_count = dbRef.ref().child('room/' + ref_room + '/count');
+    room_count.transaction(function (current_value) {
         if (current_value < 8) {
-            
+            var now = current_value+1;
+            var room_id = dbRef.ref().child('room_assign/' + ref_room + "/" + now);
+            room_id.set({
+                userid
+            });
             return (current_value || 0) + 1
         } else {
             alert("This room is now playing,Pls select another room")
         }
-
     })
 }
 
@@ -150,7 +169,7 @@ function delectQuestion(question) {
 
 function updateQuestion(question, newquestion) {
     var data = dbRef.ref("question" + "/" + question);
-    data.update({detail: newquestion}).then(function () {
+    data.update({ detail: newquestion }).then(function () {
         console.log("Success!!")
     }).catch(function (error) {
         console.log(error.message)
