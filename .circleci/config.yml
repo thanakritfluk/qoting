@@ -5,6 +5,7 @@ jobs:
     docker:
     - image: circleci/python:3.7
     working_directory: ~/repo
+    - image: selenium/standalone-chrome:latest
     steps:
     - checkout
     - run:
