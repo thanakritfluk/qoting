@@ -53,3 +53,7 @@ class TestingView(TestCase):
         self.assertTrue(question[0], None)
         self.assertEqual(len(question), 8 )
 
+    def test_postsignup(self):
+        response = self.client.get(reverse('qoting_app:postsignup'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'qoting_app/waiting_room.html')
