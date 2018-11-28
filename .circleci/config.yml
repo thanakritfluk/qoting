@@ -28,7 +28,7 @@ jobs:
     - run:
         name: Collect Coverage
         command: |
-          command: codecov
+          codecov
 
   deploy:
     docker:
