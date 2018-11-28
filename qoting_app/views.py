@@ -117,11 +117,13 @@ def postsignup(request):
             return render(request, "qoting_app/login.html", {"message": message})
 
 def googleSignin(request):
-    return render(request, "qoting_app/login.html", {"message": message})
+    return render(request, "qoting_app/login.html")
 
 def facebookSignin(request):
-    return render(request, "qoting_app/login.html", {"message": message})
+    return render(request, "qoting_app/login.html")
 
+def guestSignin(request):
+    return render(request, "qoting_app/welcome.html")
 
 def logout(request):
     auth.logout(request)
