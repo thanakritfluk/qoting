@@ -13,6 +13,7 @@ jobs:
         command: |
           python3 -m venv venv
           sudo pip3 install -r requirements.txt
+          sudo pip install codecov
     - run:
         name: Migrate database
         command: |
@@ -24,6 +25,10 @@ jobs:
           python3 manage.py collectstatic
           python3 manage.py test qoting_app/tests
           coverage run manage.py test qoting_app/tests
+    - run:
+        name: Collect Coverage
+        command: |
+          command: codecov
 
   deploy:
     docker:
