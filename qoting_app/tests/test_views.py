@@ -32,10 +32,10 @@ class TestingView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qoting_app/login.html')
 
-    def test_postsign(self):
-        response = self.client.get(reverse('qoting_app:postsign'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'qoting_app/welcome.html')
+    # def test_postsign(self):
+    #     response = self.client.get(reverse('qoting_app:postsign'))
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTemplateUsed(response, 'qoting_app/welcome.html')
 
     def test_adminlogin(self):
         response = self.client.get(reverse('qoting_app:adminlogin'))
