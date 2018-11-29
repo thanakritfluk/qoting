@@ -6,7 +6,9 @@ var config = {
     storageBucket: "qoting-1ca86.appspot.com",
     messagingSenderId: "241026992000"
 };
+
 firebase.initializeApp(config);
+
 var dbRef = firebase.database();
 var room1 = document.querySelector('room1');
 var room2 = document.querySelector('room2');
@@ -92,7 +94,7 @@ function joinRoom(ref_room) {
     var room_count_ref = dbRef.ref().child('room/' + ref_room + '/count');
     room_count_ref.transaction(function (current_value) {
         if (current_value < 8) {
-            
+
             return (current_value || 0) + 1
         } else {
             alert("This room is now playing,Pls select another room")
@@ -157,3 +159,4 @@ function updateQuestion(question, newquestion) {
     })
 
 }
+
