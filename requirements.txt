@@ -7,3 +7,4 @@ Pyrebase4==4.1.0
 javascript==2015.32.59
 selenium==3.141.0
 chromedriver_installer
+chromedriver-binary
