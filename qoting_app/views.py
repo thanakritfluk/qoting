@@ -116,7 +116,6 @@ def postsignup(request):
             message = "Email already exist"
             return render(request, "qoting_app/login.html", {"message": message})
 
-
 def logout(request):
     auth.logout(request)
     return render(request, 'qoting_app/login.html')

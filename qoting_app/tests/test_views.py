@@ -32,10 +32,11 @@ class TestingView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qoting_app/login.html')
 
-    # def test_postsign(self):
-    #     response = self.client.get(reverse('qoting_app:postsign'))
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertTemplateUsed(response, 'qoting_app/welcome.html')
+    def test_postsign(self):
+        data = {'email': 'test1234@gmail.com', 'pass': '123456'}
+        response = self.client.post(reverse('qoting_app:postsign'), data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'qoting_app/welcome.html')
 
     def test_adminlogin(self):
         response = self.client.get(reverse('qoting_app:adminlogin'))
@@ -53,7 +54,14 @@ class TestingView(TestCase):
         self.assertTrue(question[0], None)
         self.assertEqual(len(question), 8 )
 
-    # def test_postsignup(self):
-    #     response = self.client.get(reverse('qoting_app:postsignup'))
+    def test_postsignup(self):
+        data = {'name': 'tester', 'email': 'test@example.com', 'passw': '123456'}
+        response = self.client.get(reverse('qoting_app:postsignup'), data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'qoting_app/login.html')
+
+    # def test_admin_login(self):
+    #     data = {'admin_username': 'ou','admin_password': '1234'}
+    #     response = self.client.get(reverse('qoting_app:adminlogin'), data)
     #     self.assertEqual(response.status_code, 200)
-    #     self.assertTemplateUsed(response, 'qoting_app/waiting_room.html')
+    #     self.assertTemplateUsed(response, 'qoting_app/admin_page.html')
