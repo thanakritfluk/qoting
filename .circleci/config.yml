@@ -29,6 +29,8 @@ jobs:
         command: |
           python3 manage.py collectstatic
           coverage run manage.py test qoting_app/tests
+          coverage report
+          coverage html
     - run:
         name: Collect Coverage
         command: |
