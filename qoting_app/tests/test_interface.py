@@ -1,20 +1,21 @@
-from django.test import TestCase
+from unittest import TestCase
 from selenium import webdriver
 
 
 class TestingWeb(TestCase):
 
-    def test_setup(self):
+    def setUp(self):
         options = webdriver.ChromeOptions()
         options.add_argument("--start-maximized")
         options.add_argument('--ignore-certificate-errors')
         options.add_argument("--test-type")
         options.add_argument("--headless")
         options.add_argument("--no-sandbox")
+        options.add_argument('--disable-dev-shm-usage')
+        self.driver = webdriver.Chrome('/usr/local/bin/chromedriver', chrome_options=options)
 
     def test_sign_in(self):
-
-        driver = webdriver.Chrome('/usr/local/bin/chromedriver')
+        driver = self.driver
         driver.get('https://qoting-postgre.herokuapp.com')
         email = driver.find_element_by_name('email')
         passw = driver.find_element_by_name('pass')
@@ -25,7 +26,7 @@ class TestingWeb(TestCase):
         driver.close()
 
     def test_sign_up(self):
-        driver = webdriver.Chrome('/usr/local/bin/chromedriver')
+        driver = self.driver
         driver.get('https://qoting-postgre.herokuapp.com')
 
         driver.find_element_by_xpath('//div/div/div/div[2]').click()
