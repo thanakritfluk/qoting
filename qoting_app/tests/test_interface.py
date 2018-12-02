@@ -9,8 +9,11 @@ class TestingWeb(TestCase):
         options.add_argument("--start-maximized")
         options.add_argument('--ignore-certificate-errors')
         options.add_argument("--test-type")
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
 
     def test_sign_in(self):
+
         driver = webdriver.Chrome('/usr/local/bin/chromedriver')
         driver.get('https://qoting-postgre.herokuapp.com')
         email = driver.find_element_by_name('email')
