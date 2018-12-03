@@ -18,8 +18,6 @@ firebase = pyrebase.initialize_app(config)
 
 auth_fb = firebase.auth()
 
-auth_fb_google = firebase.auth().GoogleAuthProvider()
-
 database = firebase.database()
 
 
