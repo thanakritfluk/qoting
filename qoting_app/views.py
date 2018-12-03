@@ -18,6 +18,8 @@ firebase = pyrebase.initialize_app(config)
 
 auth_fb = firebase.auth()
 
+auth_fb_google = firebase.auth().GoogleAuthProvider()
+
 database = firebase.database()
 
 
@@ -117,10 +119,21 @@ def postsignup(request):
             return render(request, "qoting_app/login.html", {"message": message})
 
 def googleSignin(request):
-    return render(request, "qoting_app/login.html")
+    # provider = auth_fb_google
+    # provider.addScope('profile')
+    # provider.addScope('email')
+    # try:
+    #     uid = 
+    #     data = {"name": uid, "avartar": '0', "coin": '0'}
+    #     database.child("user").child(uid).child("details").set(data)
+    #     message = "Hello newbie!!"
+    # except:
+    #     message = "Welcome Back!!"
+    # return render(request, "qoting_app/welcome.html", {"message": message})
+    return render(request, "qoting_app/welcome.html")
 
 def facebookSignin(request):
-    return render(request, "qoting_app/login.html")
+    return render(request, "qoting_app/welcome.html")
 
 def guestSignin(request):
     return render(request, "qoting_app/welcome.html")
