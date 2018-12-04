@@ -6,7 +6,9 @@ var config = {
     storageBucket: "qoting-1ca86.appspot.com",
     messagingSenderId: "241026992000"
 };
+
 firebase.initializeApp(config);
+
 var dbRef = firebase.database();
 var userid = "";
 var room1;

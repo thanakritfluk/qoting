@@ -3,26 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
-     {% load static %}
+    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'addquestion.css' %}">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <title>Admin Management</title>
 </head>
 <body>
-    <div style="padding-left: 1cm; " class="row border">
-        <h1><font face="piron">Admin Management</font></h1>
+<div style="padding-left: 1cm; " class="row border">
+    <h1><font face="piron">Admin Management</font></h1>
+</div>
+<div class="row border">
+
+    <div style="margin-left: 8cm; margin-top: 0.5cm; margin-bottom: 0.5cm; background-color: #f8f9fa;" class="btn-group"
+         role="group" aria-label="Basic example">
+        <h2>Delete user</h2>
+        <select id="usernickname" multiple>
+            {% for user in usernickiname %}
+                <option>{{ user }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <button type="button" onclick="deleteUser()">Delete</button>
     </div>
-    <div class="row border"><div style="margin-left: 8cm; margin-top: 0.5cm; margin-bottom: 0.5cm; background-color: #f8f9fa;" class="btn-group" role="group" aria-label="Basic example">
-        <button style="padding-right: 1cm; padding-left: 1cm" type="button" class="btn btn-light">Update User</button>
-        <button style="padding-right: 1cm; padding-left: 1cm" type="button" class="btn btn-light">Delete User</button>
-        <button style="padding-right: 1cm; padding-left: 1cm" type="button" class="btn btn-light">Add Question</button>
-        <button style="padding-right: 1cm; padding-left: 1cm" type="button" class="btn btn-light">Delete Question</button>
-        <button style="padding-right: 1cm; padding-left: 1cm"  type="button" class="btn btn-light">Add Admin</button>
-    </div></div>
 
+    <form action="{% url 'qoting_app:postaddquestion' %}" method="post">
+        {% csrf_token %}
+        <div style="margin-left: 8cm; margin-top: 0.5cm; margin-bottom: 0.5cm; background-color: #f8f9fa;"
+             class="btn-group"
+             role="group" aria-label="Basic example">
+            <h2>Add Question </h2>
+            <input type="text" placeholder="Question" required>
+            <button type="submit">Add</button>
+        </div>
+    </form>
 
+</div>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+<script src="{% static 'scripts/admin.js' %}"></script>
 </body>
 </html>

@@ -20,10 +20,15 @@
     <div style="margin-left: 16cm; margin-top: 2cm;" class="border shadow p-3 mb-5 rounded">
         <div style="padding-left: 1cm; padding-right: 1cm; padding-top: 1cm; padding-bottom: 1cm"><h3><font
                 face="piron">Username</font></h3><br>
-            <input style="size: 10cm" type="text" name="admin_username" placeholder="Please input an username...">
-            <h3 style="margin-top: 20px"><font face="piron">Password</font></h3><br>
-            <input type="text" name="admin_password" placeholder="Please input a password..."></div>
-        <button onclick="location.href='{% url 'qoting_app:adminpostsign' %}'">submit</button>
+            <form action="{% url 'qoting_app:adminpostsign' %}" method="post">
+                {% csrf_token %}
+                <input style="size: 10cm" type="text" name="admin_username" placeholder="Please input an username..." required>
+                <h3 style="margin-top: 20px"><font face="piron">Password</font></h3><br>
+                <input type="text" name="admin_password" placeholder="Please input a password..." required>
+                <br>
+                <button type="submit">submit</button>
+            </form>
+        </div>
         <button onclick="location.href='{% url 'qoting_app:signin' %}'">cancel</button>
     </div>
 </div>

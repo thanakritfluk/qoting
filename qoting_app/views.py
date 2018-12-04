@@ -146,12 +146,41 @@ def game_play(request):
         message = "Please login again"
         return render(request, 'qoting_app/login.html', {'message': message})
 
-# def addquestion(request):
-#     return render(request, "qoting_app/addquestion.html")
+
+def adminlogin(request):
+    return render(request, 'qoting_app/admin_login.html')
 
 
-# def postaddquestion(request):
-#     question = request.POST.get('question')
-#     data = {"detail": str(question)}
-#     database.child("question").push(data)
-#     return render(request, "qoting_app/addquestion.html")
+def postadminlogin(request):
+    try:
+        user = request.POST.get('admin_username')
+        passw = request.POST.get('admin_password')
+        user_admin_fb = database.child('admin').get().val()
+        for i in user_admin_fb:
+            pass_admin_fb = database.child('admin').child(str(i)).get().val()
+            if str(i) == user and passw == str(pass_admin_fb):
+                usernickiname = getallusername()
+                print(usernickiname)
+                return render(request, 'qoting_app/admin_page.html', {'usernickiname': usernickiname})
+    except:
+        message = 'Invalid admin credential'
+        return render(request, 'qoting_app/admin_login.html', {'message': message})
+
+
+def getallusername():
+    user_key = database.child('user').get().val()
+    username = []
+    for i in user_key:
+        user_name = database.child('user').child(str(i)).child('details').child('name').get().val()
+        username.append(user_name + ' : ' + i)
+    return username
+
+
+def postaddquestion(request):
+    try:
+        question = request.POST.get('question')
+        data = {"detail": str(question)}
+        database.child("question").push(data)
+        return render(request, "qoting_app/admin_page.html")
+    except:
+        return render(request, "qoting_app/admin_page.html")
