@@ -108,6 +108,7 @@ function joinRoom(ref_room) {
     var room_count = dbRef.ref().child('room/' + ref_room + '/count');
     room_count.transaction(function (current_value) {
         if (current_value < 8) {
+            
             var now = current_value+1;
             var room_id = dbRef.ref().child('room_assign/' + ref_room + "/" + now);
             room_id.set({
@@ -120,12 +121,27 @@ function joinRoom(ref_room) {
     })
 }
 
+function clearRoom(ref_room) {
+    console.log("clearrrrrr");
+    var room = dbRef.ref().child('room/' + ref_room + '/count');
+    var assign_room = dbRef.ref().child('room_assign/' + ref_room);
+    assign_room.remove();
+    assign_room.set({
+        status: 0
+    })
+    room.transaction(function () {
+        return 0
+    });
+}
 
 function setOnUpdateCurrentUser(ref_room, ref_html) {
     myRef = dbRef.ref('room/' + ref_room);
     myRef.on('child_changed', function (snapshot) {
         data = snapshot.val();
         ref_html.innerHTML = data + "/8"
+        if(snapshot.val() == 8){
+            location.href("/room"+ref_room);
+        }
     });
 }
 
@@ -174,5 +190,4 @@ function updateQuestion(question, newquestion) {
     }).catch(function (error) {
         console.log(error.message)
     })
-
 }

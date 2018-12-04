@@ -7,18 +7,27 @@
           crossorigin="anonymous">
     <title>Qoting</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'welcome.css' %}">
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script src="http://chancejs.com/chance.min.js"></script>
+    <script src="{% static 'scripts/welcome.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'welcome1.css' %}">
 </head>
 <body>
-{% csrf_token %}
+<script>
+    init("{{user}}")
+</script>
 <div class="parallax" align="center">
+        <form action="{% url 'qoting_app:joining' %}" method="post" id="form" style="display:none;">
+                {% csrf_token %}
+                <input class="input" type="text" name="num" id="num">
+            </form>
     <div class="overlay">
         <img src="{% static 'assets/logo.png' %}" width="500px" height="170px" style="margin-top:5vh"/></br>
-        <div>
-
+        <div id="room" style="margin-top:10vh;">
+            0/0
         </div>
-        <button type="button" class="btn btn-outline-secondary homeButton" style="margin-top:15vh;"
-                onclick="location.href = '{% url 'qoting_app:waiting' %}'">Start Game
+        <button type="button" class="btn btn-outline-secondary homeButton" style="margin-top:5vh;"
+                onclick="joinRoom()" id="start">Start Game
         </button>
         </br>
         <button type="button" class="btn btn-outline-secondary homeButton" style="margin-top:5vh;"
@@ -28,6 +37,7 @@
         <button type="button" class="btn btn-outline-secondary homeButton" style="margin-top:5vh;"
                 onclick="location.href = '{% url 'qoting_app:logout' %}'">Logout
         </button>
+        
     </div>
 </div>
 

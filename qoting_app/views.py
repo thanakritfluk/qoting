@@ -21,6 +21,7 @@ auth_fb = firebase.auth()
 database = firebase.database()
 
 localId = ''
+room_num = 0
 
 
 # def admin(request):
@@ -59,7 +60,13 @@ def get_random_questions():
 
 
 def welcome(request):
-    return render(request, 'qoting_app/welcome.html')
+    try:
+        userid = auth_fb.current_user
+        localid = userid['localId']
+        return render(request, 'qoting_app/welcome.html', {"user":userid, "id":localid})
+    except:
+        message = "Please login again"
+        return render(request, 'qoting_app/login.html', {'message': message})
 
 
 def shop_page(request):
@@ -83,6 +90,9 @@ def result_page(request):
 def signIn(request):
     return render(request, "qoting_app/login.html")
 
+def joining(request):
+    room_num = request.POST.get('num')
+    return render(request, "qoting_app/gameplay.html", {"num": room_num})
 
 def postsign(request):
     email = request.POST.get('email')
@@ -125,7 +135,6 @@ def postsignup(request):
 def logout(request):
     auth.logout(request)
     return render(request, 'qoting_app/login.html')
-
 
 def game_play(request):
     try:

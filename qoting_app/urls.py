@@ -11,6 +11,7 @@ urlpatterns = [
     path('postsign', views.postsign, name='postsign'),
     path('logout', views.logout, name="logout"),
     path('postsignup/', views.postsignup, name='postsignup'),
+    path('joining', views.joining, name='joining'),
     # path('addquestion/', views.addquestion, name='addquestion'),
     # path('postaddquestion/', views.postaddquestion, name="postaddquestion"),
 
