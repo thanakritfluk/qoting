@@ -4,8 +4,6 @@ branch = True
 omit =
         *__init__*
         *manage.py*
-        *test_interface.py*
-        *views.py*
         *staticfiles/*
 
 [report]
