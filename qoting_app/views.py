@@ -63,6 +63,7 @@ def welcome(request):
     try:
         userid = auth_fb.current_user
         localid = userid['localId']
+        print(localId)
         return render(request, 'qoting_app/welcome.html', {"user":userid, "id":localid})
     except:
         message = "Please login again"
@@ -106,7 +107,9 @@ def postsign(request):
     session_id = user['idToken']
     # Let web know that now auth with this session id
     request.session['uid'] = str(session_id)
-    return render(request, "qoting_app/welcome.html", {"e": email})
+    userid = auth_fb.current_user
+    localid = userid['localId']
+    return render(request, "qoting_app/welcome.html", {"user":userid, "id":localid})
 
 
 def signUp(request):
