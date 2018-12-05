@@ -20,17 +20,6 @@
     <script src="{% static 'scripts/login.js' %}"></script>
 
     <script>
-    // Initialize Firebase
-    // var config = {
-    //     apiKey: "AIzaSyAioE3uCJP-KCBuA7d0JOCzR2u13qupGkY",
-    //     authDomain: "qoting-1ca86.firebaseapp.com",
-    //     databaseURL: "https://qoting-1ca86.firebaseio.com",
-    //     projectId: "qoting-1ca86",
-    //     storageBucket: "qoting-1ca86.appspot.com",
-    //     messagingSenderId: "241026992000"
-    // };
-    // firebase.initializeApp(config);
-
     
         function toRight() {
             document.getElementById('box').className = 'box toRight';
@@ -38,135 +27,6 @@
         function rightBack() {
             document.getElementById('box').className = 'box rightBack';
         }
-        
-        // //Google signin popup
-        // var googleprovider = new firebase.auth.GoogleAuthProvider();
-        // function googleSignin() {
-        //     firebase.auth().signInWithPopup(googleprovider).then(function(result) {
-        //         var token = result.credential.accessToken;
-        //         var user = result.user;
-                
-        //         console.log(token)
-        //         console.log(user)
-        //         console.log("Success!!")
-        //         window.location.pathname = "{% url 'qoting_app:googleSignin' %}"
-        //     }).catch(function(error){
-        //         // Handle Errors here.
-        //         var errorCode = error.code;
-        //         var errorMessage = error.message;
-        //         // The email of the user's account used.
-        //         var email = error.email;
-        //         // The firebase.auth.AuthCredential type that was used.
-        //         var credential = error.credential;
-                
-        //         console.log(error.code)
-        //         console.log("Failed :(")
-        //     });
-        // }
-
-        // //Google signin redirect
-        // var googleprovider = new firebase.auth.GoogleAuthProvider();
-        // function googleSignin() {
-        //     firebase.auth().signInWithRedirect(googleprovider);
-
-        //     firebase.auth().getRedirectResult().then(function(result) {
-        //         if (result.credential) {
-        //             // This gives you a Google Access Token. You can use it to access the Google API.
-        //             var token = result.credential.accessToken;
-        //             console.log(token)
-        //         }         
-        //         // The signed-in user info.
-        //         var user = result.user;
-        //         console.log(user)
-        //         console.log("Success!!") 
-        //     }).catch(function(error) {
-        //         // Handle Errors here.
-        //         var errorCode = error.code;
-        //         var errorMessage = error.message;
-        //         // The email of the user's account used.
-        //         var email = error.email;
-        //         // The firebase.auth.AuthCredential type that was used.
-        //         var credential = error.credential;
-        //         console.log(error.code)
-        //         console.log("Failed :(")
-        //     });
-
-        // }
-
-        // // Facebook signin popup
-        // var facebookprovider = new firebase.auth.FacebookAuthProvider();
-        // function facebookSignin() {
-        //     firebase.auth().signInWithPopup(facebookprovider).then(function(result) {
-        //         var token = result.credential.accessToken;
-        //         var user = result.user;
-
-        //         console.log(token)
-        //         console.log(user)
-        //         console.log("Success!!")
-        //         window.location.pathname = "{% url 'qoting_app:facebookSignin' %}"
-        //     }).catch(function(error){
-        //         // Handle Errors here.
-        //         var errorCode = error.code;
-        //         var errorMessage = error.message;
-        //         // The email of the user's account used.
-        //         var email = error.email;
-        //         // The firebase.auth.AuthCredential type that was used.
-        //         var credential = error.credential;
-                
-        //         console.log(error.code)
-        //         console.log("Failed :(")
-        //     });
-        // }
-
-        // //Facebook signin redirect
-        // var facebookprovider = new firebase.auth.FacebookAuthProvider();
-
-        // function facebookSignin() {    
-        //     firebase.auth().signInWithRedirect(facebookprovider);
-
-        //     firebase.auth().getRedirectResult().then(function(result) {
-        //         if (result.credential) {
-        //             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        //             var token = result.credential.accessToken;
-        //             console.log(token)
-        //         }         
-        //         // The signed-in user info.
-        //         var user = result.user;
-        //         console.log(user)
-        //         console.log("Success!!")
-        //     }).catch(function(error) {
-        //         // Handle Errors here.
-        //         var errorCode = error.code;
-        //         var errorMessage = error.message;
-        //         // The email of the user's account used.
-        //         var email = error.email;
-        //         // The firebase.auth.AuthCredential type that was used.
-        //         var credential = error.credential;
-        //         console.log(error.code)
-        //         console.log("Failed :(")
-        //     });
-
-        // }
-        
-        // //anonymous sigin(Guest login)
-        // function guestSignin(){
-        //     firebase.auth().signInAnonymously().catch(function(error) {
-        //         // Handle Errors here.
-        //         var errorCode = error.code;
-        //         var errorMessage = error.message;
-        //     });
-
-        //     firebase.auth().onAuthStateChanged(function(user) {
-        //         if (user) {
-        //             // User is signed in.
-        //             var isAnonymous = user.isAnonymous;
-        //             var uid = user.uid;
-        //         } else {
-        //             // User is signed out.
-        //         }
-  
-        //     });
-        // }
 
 
     </script>
@@ -197,15 +57,6 @@
                         <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
                     </div>
                 </div>
-                <!-- <div name="guestSignin" class="button" style="margin-top: 11vh; background-color: rgb(124, 124, 124);" onclick="guestSignin()">
-                    <form action="{% url 'qoting_app:guestSignin' %}" method="post">
-                        {% csrf_token %}
-                        <span>Guest</span>
-                        <div class="icon">
-                            <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
-                        </div>
-                    </form>
-                </div> -->
                 <div class="googleSignin">
                     <button id="googleSignin" class="button" type="submit" style="margin-top: 11vh; background-color: rgb(156, 45, 17);" onclick="gg_login()">        
                         {% csrf_token %}
@@ -216,7 +67,7 @@
                     </button>
                 </div>
                 <div class="facebookSignin">
-                    <button id="facebookSignin" class="button" type="submit" style="margin-top: 18vh; background-color: rgb(32, 62, 126);" onclick="facebookSignin()">
+                    <button id="facebookSignin" class="button" type="submit" style="margin-top: 18vh; background-color: rgb(32, 62, 126);" onclick="fb_login()">
                         {% csrf_token %}
                         <span>Facebook</span>
                         <div class="icon">

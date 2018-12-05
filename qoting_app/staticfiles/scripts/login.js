@@ -14,7 +14,7 @@
   firebase.auth().onAuthStateChanged()
 
   function gg_login(){
-    const provider = new firebase.auth.FacebookAuthProvider();
+    const provider = new firebase.auth().GoogleAuthProvider();
     const promise = firebase.auth().signInWithPopup(provider);
     promise.then(function(result) {
       console.log(result);
@@ -25,13 +25,15 @@
     });
   }
 
-  document.getElementById('facebookSignin').addEventListener( 'click', e=>{
-    const provider = new firebase.auth.FacebookAuthProvider();
-    const promise = firebase.auth().signInWithPopup(provider)
-    promise.then(function(result) {
-      console.log(result)
-      // ...
+  function fb_login(){
+    const provider = new firebase.auth().FacebookAuthProvider();
+    const promise = firebasse.auth().signInWithPopup(provider);
+    promise.ther(function(result) {
+      console.log(result);
+      //...
     }).catch(function(error) {
-            // ...
+      console.log(error);
+        //...
     });
-  })
+  }
+  
