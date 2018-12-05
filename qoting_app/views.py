@@ -24,18 +24,6 @@ localId = ''
 room_num = 0
 
 
-# def admin(request):
-#     try:
-#         question_list = get_random_questions()
-#         # print(question_list)
-#         userid = auth_fb.current_user
-#         localid = userid['localId']
-#         nickname = database.child("user").child(str(localid)).child("details").child("name").get().val()
-#         return render(request, 'qoting_app/admin.html',
-#                       {"question_list": question_list, "localid": localid, "nickname": nickname})
-#     except:
-#         message = "Please login again"
-#         return render(request, 'qoting_app/signIn.html', {"message": message})
 
 def get_random_questions():
     question_list = []
@@ -152,7 +140,6 @@ def postadminlogin(request):
             pass_admin_fb = database.child('admin').child(str(i)).get().val()
             if str(i) == user and passw == str(pass_admin_fb):
                 usernickiname = getallusername()
-                # print(usernickiname)
                 return render(request, 'qoting_app/admin_page.html', {'usernickiname': usernickiname})
     except:
         message = 'Invalid admin credential'

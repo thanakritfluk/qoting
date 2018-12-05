@@ -37,7 +37,6 @@ class TestingWeb(TestCase):
         email.send_keys('park555@gmail.com')
         passw.send_keys('12345678')
         driver.find_element_by_xpath('//*[@id="box"]/div[2]/div/form/button').click()
-
         driver.close()
 
 
