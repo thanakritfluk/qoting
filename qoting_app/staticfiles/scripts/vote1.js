@@ -319,36 +319,39 @@ function voted(num){
             count++;
         }
     }
-    if(count < 3){
+    if(count <= 3){
         voting.push(num);
     }
 }
 
 function submit_vote(){
-    for(i=0; i<=count; i++){
+    for(i=0; i<count; i++){
         var num = voting[i]
-        if(num == 1 && num == 3){
+        console.log(num);
+        if(num == 1 || num == 3){
             var ref = dbRef.ref("/room/player/1/point");
-        }else if(num == 5 && num == 14){
+        }else if(num == 5 || num == 14){
             var ref = dbRef.ref("/room/player/2/point");
-        }else if(num == 6 && num == 7){
+        }else if(num == 6 || num == 7){
             var ref = dbRef.ref("/room/player/3/point");
-        }else if(num == 9 && num == 15){
+        }else if(num == 9 || num == 15){
             var ref = dbRef.ref("/room/player/4/point");
-        }else if(num == 2 && num == 8){
+        }else if(num == 2 || num == 8){
             var ref = dbRef.ref("/room/player/5/point");
-        }else if(num == 10 && num == 12){
+        }else if(num == 10 || num == 12){
             var ref = dbRef.ref("/room/player/6/point");
-        }else if(num == 4 && num == 11){
+        }else if(num == 4 || num == 11){
             var ref = dbRef.ref("/room/player/7/point");
-        }else if(num == 13 && num == 16){
+        }else if(num == 13 || num == 16){
             var ref = dbRef.ref("/room/player/8/point");
         }
-        ref.transaction(function (current_value) { 
-            return (current_value || 0) + 100;
-        })
+        console.log(ref);
+        ref.transaction(function (current_value) {
+            return (current_value || 0) + 1
+        });
     }
     check = 1;
+    console.log(111);
 }
 
 function next_page(){
