@@ -12,35 +12,33 @@
     <script src="{% static 'scripts/gameplay.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'gameplay.css' %}">
 </head>
-
 <body>
     <script>
         init("{{num}}")
     </script>
-    <form action="">
+    <form action="{% url 'qoting_app:vote' %}" id="form"></form>
         {% csrf_token %}
         <div>
             <h1>
                 Question 1
             </h1>
             <div id="q1">
-
             </div>
-            Answer: <input type="text" name="q1" required>
+            Answer: <input type="text" id="a1" value="">
         </div>
         <div>
             <h1>
                 Question 2
             </h1>
             <div id="q2">
-
             </div>
-            Answer: <input type="text" name="q2" required>
+            Answer: <input type="text" id="a2" value="">
         </div>
         </br>
-        <input type="submit" class="btn btn-primary" value="submit">
-    </form>
+        <button class="btn btn-success" onclick="submit_question()">submit</button></hr>
+        <div id="remain">
 
+        </div>
 </body>
 
 </html>

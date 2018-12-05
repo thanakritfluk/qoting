@@ -69,19 +69,8 @@ def welcome(request):
         message = "Please login again"
         return render(request, 'qoting_app/login.html', {'message': message})
 
-
-def shop_page(request):
-    return render(request, 'qoting_app/shoppage.html')
-
-
-def waiting_page(request):
-    try:
-        userid = auth_fb.current_user
-        localid = userid['localId']
-        return render(request, 'qoting_app/waiting_room.html', {"user":userid, "id":localid})
-    except:
-        message = "Please login again"
-        return render(request, 'qoting_app/login.html', {'message': message})
+def vote(request):
+    return render(request, 'qoting_app/vote.html', {'num':room_num})
 
 
 def result_page(request):
@@ -91,9 +80,11 @@ def result_page(request):
 def signIn(request):
     return render(request, "qoting_app/login.html")
 
+
 def joining(request):
     room_num = request.POST.get('num')
     return render(request, "qoting_app/gameplay.html", {"num": room_num})
+
 
 def postsign(request):
     email = request.POST.get('email')

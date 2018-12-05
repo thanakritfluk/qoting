@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <title>Qoting</title>
+    {% load static %}
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script src="{% static 'scripts/vote.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'vote.css' %}">
+</head>
+
+<body>
+    <h1>Please vote your favourite answers( You can vote up to 3 answers )</h1>
+    <div class="row">
+        <div class="col-6">
+            <div id="q1">
+                <div class="alert alert-secondary" id="q1-q">
+
+                </div>
+                <button class="btn btn-primary" id="q1-a1">
+
+                </button>
+                <button class="btn btn-primary" id="q1-a2">
+
+                </button>
+            </div>
+            <div id="q2">
+                <div class="alert alert-secondary" id="q2-q">
+
+                </div>
+                <button class="btn btn-primary" id="q2-a1">
+
+                </button>
+                <button class="btn btn-primary" id="q2-a2">
+
+                </button>
+            </div>
+            <div id="q3">
+                <div class="alert alert-secondary" id="q3-q">
+
+                </div>
+                <button class="btn btn-primary" id="q3-a1">
+
+                </button>
+                <button class="btn btn-primary" id="q3-a2">
+
+                </button>
+            </div>
+            <div id="q4">
+                <div class="alert alert-secondary" id="q4-q">
+
+                </div>
+                <button class="btn btn-primary" id="q4-a1">
+
+                </button>
+                <button class="btn btn-primary" id="q4-a2">
+
+                </button>
+            </div>
+        </div>
+        <div class="col-6">
+            <div id="q5">
+                <div class="alert alert-secondary" id="q5-q">
+
+                </div>
+                <button class="btn btn-primary" id="q5-a1">
+
+                </button>
+                <button class="btn btn-primary" id="q5-a2">
+
+                </button>
+            </div>
+            <div id="q6">
+                <div class="alert alert-secondary" id="q6-q">
+
+                </div>
+                <button class="btn btn-primary" id="q6-a1">
+
+                </button>
+                <button class="btn btn-primary" id="q6-a2">
+
+                </button>
+            </div>
+            <div id="q7">
+                <div class="alert alert-secondary" id="q7-q">
+
+                </div>
+                <button class="btn btn-primary" id="q7-a1">
+
+                </button>
+                <button class="btn btn-primary" id="q7-a2">
+
+                </button>
+            </div>
+            <div id="q8">
+                <div class="alert alert-secondary" id="q8-q">
+
+                </div>
+                <button class="btn btn-primary" id="q8-a1">
+
+                </button>
+                <button class="btn btn-primary" id="q8-a2">
+
+                </button>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-success">submit</button>
+</body>
+
+</html>

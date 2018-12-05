@@ -39,6 +39,7 @@ function setCurrentUser() {
     data.on("value", function (snapshot) {
         room.innerHTML = snapshot.val() + "/8"
         if (snapshot.val() == 8 && accept == 1) {
+            accept = 0;
             send_value();
         }
     }, function (errorObject) {
