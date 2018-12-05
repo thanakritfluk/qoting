@@ -56,6 +56,8 @@ class TestingView(TestCase):
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response, 'qoting_app/admin_login.html')
 
+
+
     def test_waiting_page(self):
         response = self.client.get(reverse('qoting_app:waiting'))
         self.assertEqual(response.status_code,200)
@@ -75,14 +77,40 @@ class TestingView(TestCase):
         Test sign up function.
         """
         data = {'name': 'tester', 'email': 'test@example.com', 'passw': '123456'}
-        response = self.client.get(reverse('qoting_app:postsignup'), data)
+        response = self.client.post(reverse('qoting_app:postsignup'), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qoting_app/login.html')
 
         data = {'name': 'tester2', 'email': 'test@example.com', 'passw': '12345'}
-        response = self.client.get(reverse('qoting_app:postsignup'),data)
-        self.assertEqual(response.status_code,200)
+        response = self.client.post(reverse('qoting_app:postsignup'),data)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qoting_app/login.html')
         message = response.content.decode('utf-8')
         self.assertTrue('at least 6 character' in message)
 
+    def test_joining(self):
+        room_number = {'num': '1'}
+        response = self.client.post(reverse('qoting_app:joining'),room_number)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'qoting_app/gameplay.html')
+        message = response.content.decode('utf-8')
+        self.assertTrue('1' in message)
+
+    def test_postaddquestion(self):
+        question = {'question': 'Question1'}
+        response = self.client.post(reverse('qoting_app:postaddquestion', question))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'qoting_app/admin_page.html')
+
+    def test_postadminlogin(self):
+        data = {'admin_username': 'root','admin_password': '123456'}
+        response = self.client.post(reverse('qoting_app:adminpostsign'),data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'qoting_app/admin_page.html')
+
+        # data = {'admin_username': 'invalid','admin_password': '123456'}
+        # response = self.client.post(reverse('qoting_app:adminpostsign'),data)
+        # self.assertEqual(response.status_code, 200)
+        # self.assertTemplateUsed(response, 'qoting_app/admin_login.html')
+        # message = response.content.decode('utf-8')
+        # self.assertTrue('Invalid admin' in message)

@@ -37,18 +37,6 @@ room_num = 0
 #         message = "Please login again"
 #         return render(request, 'qoting_app/signIn.html', {"message": message})
 
-def adminlogin(request):
-    return render(request, 'qoting_app/admin_login.html')
-
-
-def postadminlogin(request):
-    user = request.POST.get('admin_username')
-    passw = request.POST.get('admin_password')
-    adminfb = database.child('admin').child('root').get().val()
-    print(adminfb)
-    return render(request, 'qoting_app/admin_page.html')
-
-
 def get_random_questions():
     question_list = []
     inventory = database.child("question").get()
@@ -90,6 +78,7 @@ def result_page(request):
 
 def signIn(request):
     return render(request, "qoting_app/login.html")
+
 
 def joining(request):
     room_num = request.POST.get('num')
@@ -147,7 +136,6 @@ def game_play(request):
     except:
         message = "Please login again"
         return render(request, 'qoting_app/login.html', {'message': message})
-
 
 def adminlogin(request):
     return render(request, 'qoting_app/admin_login.html')
