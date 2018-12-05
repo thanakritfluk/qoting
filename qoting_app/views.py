@@ -74,7 +74,7 @@ def vote(request):
 
 
 def result_page(request):
-    return HttpResponse('Result page')
+    return render(request, 'qoting_app/result.html')
 
 
 def signIn(request):

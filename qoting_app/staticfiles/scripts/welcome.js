@@ -12,17 +12,21 @@ var userid = "";
 var room;
 var gameid = 0;
 var accept = 0;
+var name = "";
 
 function init(id) {
     userid = id;
+    dbRef.ref("user/details/name").on("value", function(snapshot) {
+        name = snapshot.val();
+    })
     console.log(userid);
 }
 
-window.onbeforeunload = function(){
-    if(accept == 1){
+window.onbeforeunload = function () {
+    if (accept == 1) {
         cancel();
     }
- }
+}
 
 window.onload = function () {
     console.log("init");
@@ -68,7 +72,8 @@ function joinRoom() {
                     var now = current_value + 1;
                     var room_id = dbRef.ref().child('room/player/' + now);
                     room_id.set({
-                        userid
+                        "name": name,
+                        "point": 0
                     });
                     gameid = now;
                     assign();
@@ -83,16 +88,17 @@ function joinRoom() {
             var now = data;
             var room_id = dbRef.ref().child('room/player/' + now);
             room_id.set({
-                userid
+                "name": name,
+                "point": 0
             });
             gameid = now;
             assign();
             change_btn();
-            if(missing_count == 1){
+            if (missing_count == 1) {
                 room_missing.set({
                     "gameid": 0
                 });
-            }else{
+            } else {
                 snap.setValue(null);
             }
             room_count.transaction(function (current_value) {
@@ -109,7 +115,7 @@ function change_btn() {
     btn.classList.add("btn-danger");
     btn.classList.remove("btn-outline-secondary");
     btn.innerHTML = 'Cancel';
-    btn.setAttribute( "onClick", "javascript: cancel();" );
+    btn.setAttribute("onClick", "javascript: cancel();");
 }
 
 function cancel() {
@@ -137,7 +143,7 @@ function cancel() {
     btn.classList.add("btn-outline-secondary");
     btn.classList.remove("btn-danger");
     btn.innerHTML = 'Start Game';
-    btn.setAttribute( "onClick", "javascript: joinRoom();" );
+    btn.setAttribute("onClick", "javascript: joinRoom();");
 }
 
 function assign() {
@@ -182,7 +188,7 @@ function get_question() {
     q_ref.on("value", function (snapshot) {
         q_count = snapshot.numChildren();
     })
-    var q_num = chance.unique(chance.integer, 8, { min: 1, max: 15 });
+    var q_num = chance.unique(chance.integer, 8, { min: 1, max: 30 });
     var check = 1;
     var count = 1;
     q_ref.once('value', function (snapshot) {
@@ -203,8 +209,8 @@ function get_question() {
     });
 }
 
-function logout(){
-    if(accept == 1){
+function logout() {
+    if (accept == 1) {
         cancel();
     }
     var btn = document.getElementById("logout");
