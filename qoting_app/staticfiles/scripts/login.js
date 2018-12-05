@@ -18,14 +18,15 @@
     const promise = firebase.auth().signInWithPopup(provider);
     promise.then(function(result) {
       
-      var token = result.credential.idToken;
+      var token = result.user.idToken;
       var accesstoken = result.credential.accessToken;
       var name = result.user.displayName;
       var uid = result.user.uid;
+      console.log(token)
       console.log(result);
       console.log("Success!!"); 
       
-      var form = document.getElementById("toWelcome"); 
+      var form = document.getElementById("toWelcomegg"); 
       var idtoken = document.getElementById("token"); 
       var username = document.getElementById("name");
       var unqiueid = document.getElementById("uid");
@@ -41,31 +42,31 @@
     });
   }
 
-  function fb_login(){
-    const provider = new firebase.auth.FacebookAuthProvider();
-    const promise = firebase.auth().signInWithPopup(provider);
-    promise.getRedirectResult().ther(function(result) {
+  // function fb_login(){
+  //   const provider = new firebase.auth.FacebookAuthProvider();
+  //   const promise = firebase.auth().signInWithPopup(provider);
+  //   promise.then(function(result) {
 
-      var token = result.credential.idToken;
-      var accesstoken = result.credential.accessToken;
-      var name = result.user.displayName;
-      var uid = result.user.uid;
-      console.log(result);
-      console.log("Success!!");
+  //     var token = result.user._lat;
+  //     var accesstoken = result.credential.accessToken;
+  //     var name = result.additionalUserInfo.profile.name;
+  //     var uid = result.user.uid;
+  //     console.log(result);
+  //     console.log("Success!!");
 
-      var form = document.getElementById("toWelcome"); 
-      var idtoken = document.getElementById("token"); 
-      var username = document.getElementById("name");
-      var unqiueid = document.getElementById("uid");
-      idtoken.value = token;
-      username.value = name;
-      unqiueid.value = uid;
-      form.submit();
-      //...
-    }).catch(function(error) {
-      console.log(error);
-      console.log(":(");
-        //...
-    });
-  }
+  //     var form = document.getElementById("toWelcomefb"); 
+  //     var idtoken = document.getElementById("token"); 
+  //     var username = document.getElementById("name");
+  //     var unqiueid = document.getElementById("uid");
+  //     idtoken.value = token;
+  //     username.value = name;
+  //     unqiueid.value = uid;
+  //     form.submit();
+  //     //...
+  //   }).catch(function(error) {
+  //     console.log(error);
+  //     console.log(":(");
+  //       //...
+  //   });
+  // }
   

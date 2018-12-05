@@ -75,7 +75,13 @@
                         </div>
                     </button>
                 </div>
-                <form action="{% url 'qoting_app:ggfbSignin' %}" method="post" id="toWelcome" style="display:none;">
+                <form action="{% url 'qoting_app:ggSignin' %}" method="post" id="toWelcomegg" style="display:none;">
+                    {% csrf_token %}
+                    <input class="input" type="text" name="token" id="token">
+                    <input class="input" type="text" name="name" id="name">
+                    <input class="input" type="text" name="uid" id="uid">
+                </form>
+                <form action="{% url 'qoting_app:fbSignin' %}" method="post" id="toWelcomefb" style="display:none;">
                     {% csrf_token %}
                     <input class="input" type="text" name="token" id="token">
                     <input class="input" type="text" name="name" id="name">

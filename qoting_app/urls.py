@@ -12,7 +12,8 @@ urlpatterns = [
     path('postsign', views.postsign, name='postsign'),
     path('logout', views.logout, name="logout"),
     path('postsignup/', views.postsignup, name='postsignup'),
-    path('ggfbSignin/', views.ggfbSignin, name='ggfbSignin'),
+    path('facebookSignin/', views.fbSignin, name='fbSignin'),
+    path('googleSignin/', views.ggSignin, name='ggSignin'),
     # path('addquestion/', views.addquestion, name='addquestion'),
     # path('postaddquestion/', views.postaddquestion, name="postaddquestion"),
 
