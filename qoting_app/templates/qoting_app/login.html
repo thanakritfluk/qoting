@@ -12,13 +12,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'login1.css' %}">
+    
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+    
+    <script src="{% static 'scripts/login.js' %}"></script>
+
     <script>
+    
         function toRight() {
             document.getElementById('box').className = 'box toRight';
         }
         function rightBack() {
             document.getElementById('box').className = 'box rightBack';
         }
+
+
     </script>
     <title>login</title>
 </head>
@@ -33,7 +43,7 @@
                         {% csrf_token %}
                         <input class="input" type="email" name="email" placeholder="Email"><br />
                         <input class="input" type="password" name="pass" placeholder="Password"><br />
-                        <button class="button input" type="submit" value="SignIn" style="background-color: rgb(34, 145, 20); margin-top:2vh; border:none;">
+                        <button class="button input" type="submit" value="SignIn" style="background-color: rgb(34, 167, 22); margin-top:2vh; border:none;">
                             <span>SignIn</span>
                             <div class="icon">
                                 <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
@@ -41,18 +51,27 @@
                         </button>
                     </form>
                 </div>
-                <div class="button" style="margin-top: 4vh; background-color: rgb(138, 136, 32);" onclick="toRight()">
+                <div class="button" style="margin-top: 4vh; background-color: rgb(168, 142, 23);" onclick="toRight()">
                     <span>SignUp</span>
                     <div class="icon">
                         <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
                     </div>
                 </div>
-                <div class="button" style="margin-top: 11vh; background-color: rgb(156, 45, 17);">
-                    <span>Google</span>
-                    <div class="icon">
-                        <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
-                    </div>
+                <div class="googleSignin">
+                    <button id="googleSignin" class="button" type="submit" style="margin-top: 11vh; background-color: rgb(156, 45, 17);" onclick="gg_login()">        
+                        {% csrf_token %}
+                        <span>Google</span>
+                        <div class="icon">
+                            <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
+                        </div>
+                    </button>
                 </div>
+                <form action="{% url 'qoting_app:ggSignin' %}" method="post" id="toWelcomegg" style="display:none;">
+                    {% csrf_token %}
+                    <input class="input" type="text" name="token" id="token">
+                    <input class="input" type="text" name="name" id="name">
+                    <input class="input" type="text" name="uid" id="uid">
+                </form>
             </div>
             <div class="right">
                 <div class="login-form">
@@ -81,6 +100,8 @@
         </div>
     </div>
     <button class="admin" onclick="location.href = '{% url 'qoting_app:adminlogin' %}'">Admin</button>
+    
+    
 </body>
 
 </html>

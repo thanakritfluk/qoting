@@ -92,6 +92,22 @@ body {
   transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
 }
 
+.fbgbutton {
+  display: block;
+  width: 6vh;
+  height: 5vh;
+  line-height: 5vh;
+  margin: auto;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+}
+
 .button span,
 .button .icon {
   display: block;

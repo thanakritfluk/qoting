@@ -102,7 +102,6 @@ def postsign(request):
     localid = userid['localId']
     return render(request, "qoting_app/welcome.html", {"user":userid, "id":localid})
 
-
 def signUp(request):
     return render(request, "qoting_app/login.html")
 
@@ -125,6 +124,50 @@ def postsignup(request):
             message = "Email already exits"
             return render(request, "qoting_app/login.html", {"message": message})
 
+def fbSignin(request):
+    idtoken = request.POST.get('token')
+    name = request.POST.get('name')
+    uid = request.POST.get('uid')
+
+    try:
+        request.session['uid'] = str(idtoken)
+        
+        if uid in getalluid():
+            message = "Welcome back!!"
+        elif uid not in getalluid():
+            data = {"name": name, "avatar": '0', "coin": '0'}
+            database.child("user").child(uid).child("details").set(data)
+            message = "Hello newbie!!"
+        
+    except:
+        message = "UID already exits"
+    return render(request, "qoting_app/welcome.html", {"message": message})
+
+def ggSignin(request):
+    idtoken = request.POST.get('token')
+    name = request.POST.get('name')
+    uid = request.POST.get('uid')
+
+    try:
+        request.session['uid'] = str(idtoken)
+        
+        if uid in getalluid():
+            message = "Welcome back!!"
+        elif uid not in getalluid():
+            data = {"name": name, "avatar": '0', "coin": '0'}
+            database.child("user").child(uid).child("details").set(data)
+            message = "Hello newbie!!"
+        
+    except:
+        message = "UID already exits"
+    return render(request, "qoting_app/welcome.html", {"message": message})
+
+def getalluid():
+    user_key = database.child('user').get().val()
+    listuid = []
+    for i in user_key:
+        listuid.append(i)
+    return listuid
 
 def logout(request):
     auth.logout(request)
