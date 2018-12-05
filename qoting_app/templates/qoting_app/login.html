@@ -41,8 +41,10 @@
                     <img src="{% static 'assets/logo.png' %}" width="100%">
                     <form action="{% url 'qoting_app:postsign' %}" method="post">
                         {% csrf_token %}
+                       
                         <input class="input" type="email" name="email" placeholder="Email"><br />
                         <input class="input" type="password" name="pass" placeholder="Password"><br />
+                        
                         <button class="button input" type="submit" value="SignIn" style="background-color: rgb(34, 167, 22); margin-top:2vh; border:none;">
                             <span>SignIn</span>
                             <div class="icon">
@@ -57,14 +59,12 @@
                         <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
                     </div>
                 </div>
-                <div class="googleSignin">
-                    <button id="googleSignin" class="button" type="submit" style="margin-top: 11vh; background-color: rgb(156, 45, 17);" onclick="gg_login()">        
+                 <div id="googleSignin" class="button" type="submit" style="margin-top: 10.5vh; background-color: rgb(156, 45, 17);" onclick="gg_login()">        
                         {% csrf_token %}
                         <span>Google</span>
                         <div class="icon">
                             <img src="{% static 'assets/play-solid.svg' %}" width="30%" />
                         </div>
-                    </button>
                 </div>
                 <form action="{% url 'qoting_app:ggSignin' %}" method="post" id="toWelcomegg" style="display:none;">
                     {% csrf_token %}

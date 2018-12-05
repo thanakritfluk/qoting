@@ -29,25 +29,44 @@
 
 .overlay {
     background-color:rgba(255, 255, 255, 0.9);
-    width: 100vh;
+    width: 80vh;
     height: 100vh;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
 }
 
-.homeButton {
-    width:20vh; 
-    height:10vh;
-    font-size: 18px;
-    font-weight: bold;
-    font-family: sans-serif;
-}
-
-textarea {
-    border: none;
-    background-color: transparent;
-    resize: none;
-    outline: none;
-    width: 20vh;
-    height: 5vh;
-    text-align: center;
-}
+  button{
+    background:rgb(255, 102, 0);
+    color:rgba(255, 255, 255, 0.9);
+    border:none;
+    position:relative;
+    height:50px;
+    font-size:1em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  button:hover{
+    background:rgba(187, 187, 187, 0.9);
+    color:rgb(255, 72, 0);
+  }
+  button:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:1.5px;
+    width:0;
+    background: rgb(255, 72, 0);
+    transition:400ms ease all;
+  }
+  button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  button:hover:before,button:hover:after{
+    width:70%;
+    transition:800ms ease all;
+  }

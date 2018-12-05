@@ -42,31 +42,5 @@
     });
   }
 
-  // function fb_login(){
-  //   const provider = new firebase.auth.FacebookAuthProvider();
-  //   const promise = firebase.auth().signInWithPopup(provider);
-  //   promise.then(function(result) {
-
-  //     var token = result.user._lat;
-  //     var accesstoken = result.credential.accessToken;
-  //     var name = result.additionalUserInfo.profile.name;
-  //     var uid = result.user.uid;
-  //     console.log(result);
-  //     console.log("Success!!");
-
-  //     var form = document.getElementById("toWelcomefb"); 
-  //     var idtoken = document.getElementById("token"); 
-  //     var username = document.getElementById("name");
-  //     var unqiueid = document.getElementById("uid");
-  //     idtoken.value = token;
-  //     username.value = name;
-  //     unqiueid.value = uid;
-  //     form.submit();
-  //     //...
-  //   }).catch(function(error) {
-  //     console.log(error);
-  //     console.log(":(");
-  //       //...
-  //   });
-  // }
+  
   

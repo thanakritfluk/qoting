@@ -99,30 +99,10 @@ def postsignup(request):
             message = "Email already exist"
             return render(request, "qoting_app/login.html", {"message": message})
 
-def fbSignin(request):
-    idtoken = request.POST.get('token')
-    name = request.POST.get('name')
-    uid = request.POST.get('uid')
-
-    try:
-        request.session['uid'] = str(idtoken)
-        
-        if uid in getalluid():
-            message = "Welcome back!!"
-        elif uid not in getalluid():
-            data = {"name": name, "avatar": '0', "coin": '0'}
-            database.child("user").child(uid).child("details").set(data)
-            message = "Hello newbie!!"
-        
-    except:
-        message = "UID already exits"
-    return render(request, "qoting_app/welcome.html", {"message": message})
-
-
 def ggSignin(request):
-    idtoken = request.POST.get('token')
-    name = request.POST.get('name')
-    uid = request.POST.get('uid')
+    idtoken = request.POST.get('idtoken')
+    name = request.POST.get('username')
+    uid = request.POST.get('unqiueid')
 
     try:
         request.session['uid'] = str(idtoken)
