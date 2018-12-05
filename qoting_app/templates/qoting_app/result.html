@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <title>Qoting</title>
+    {% load static %}
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script src="{% static 'scripts/result.js' %}"></script>
 </head>
+
 <body>
-    FUCK YOU
+    <form action="{% url 'qoting_app:logout' %}" id="form" style="display:none;"></form>
+    <div class="alert alert-success">
+        <div style="font-size: 200%">The winner is......</div>
+        
+    </div>
+    <div class="btn" style="margin-left: 5vh; font-size: 200%; color:goldenrod;" id="first"></div></br></br>
+    <div class="alert alert-danger">You will be return to Mainmenu in <div id="remain"></div></div>
+   
 </body>
+
 </html>
