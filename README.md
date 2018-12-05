@@ -41,4 +41,4 @@ ID           |           Name           |               Roles
 
 ## Coverage Report
 
-Click here: [Coverage HTML](/Users/spark/PycharmProjects/qoting/coverage_html_report/index.html)
+Click here: [Coverage HTML](/coverage_html_report/index.html)
