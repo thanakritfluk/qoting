@@ -16,7 +16,7 @@ var name = "";
 
 function init(id) {
     userid = id;
-    dbRef.ref("user/details/name").on("value", function(snapshot) {
+    dbRef.ref("user/"+userid+"/details/name").on("value", function(snapshot) {
         name = snapshot.val();
     })
     console.log(userid);
@@ -175,6 +175,16 @@ function assign() {
     })
 }
 
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+
 function send_value() {
     console.log(gameid);
     var form = document.getElementById("form"), node = document.getElementById("num");
@@ -188,7 +198,11 @@ function get_question() {
     q_ref.on("value", function (snapshot) {
         q_count = snapshot.numChildren();
     })
-    var q_num = chance.unique(chance.integer, 8, { min: 1, max: 30 });
+    var num = [];
+    for(i=1; i<q_count; i++){
+        num.push(i)
+    }
+    var q_num = num;
     var check = 1;
     var count = 1;
     q_ref.once('value', function (snapshot) {
