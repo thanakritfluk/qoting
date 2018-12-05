@@ -85,3 +85,4 @@ class TestingView(TestCase):
         self.assertTemplateUsed(response, 'qoting_app/login.html')
         message = response.content.decode('utf-8')
         self.assertTrue('at least 6 character' in message)
+
