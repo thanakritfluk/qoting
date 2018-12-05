@@ -50,13 +50,10 @@ class TestingView(TestCase):
         message = response.content.decode('utf-8')
         self.assertTrue('Invalid' in message)
 
-
     def test_adminlogin(self):
         response = self.client.get(reverse('qoting_app:adminlogin'))
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response, 'qoting_app/admin_login.html')
-
-
 
     def test_waiting_page(self):
         response = self.client.get(reverse('qoting_app:waiting'))

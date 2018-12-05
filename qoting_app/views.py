@@ -127,6 +127,7 @@ def logout(request):
     auth.logout(request)
     return render(request, 'qoting_app/login.html')
 
+
 def game_play(request):
     try:
         userid = auth_fb.current_user
@@ -136,6 +137,7 @@ def game_play(request):
     except:
         message = "Please login again"
         return render(request, 'qoting_app/login.html', {'message': message})
+
 
 def adminlogin(request):
     return render(request, 'qoting_app/admin_login.html')
