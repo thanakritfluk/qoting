@@ -6,13 +6,10 @@ from django.contrib.auth.models import User
 
 class TestingView(TestCase):
 
-    def test_setUp(self):
-        self.factory = RequestFactory()
-        self.user = User.objects.create_user(
-            username='park', email='park1234@gmail.com', password='123456'
-        )
-
     def test_welcome(self):
+        """
+        Test rendering welcome page.
+        """
         response = self.client.get(reverse('qoting_app:welcome'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qoting_app/welcome.html')
@@ -23,20 +20,37 @@ class TestingView(TestCase):
         self.assertTemplateUsed(response, 'qoting_app/shoppage.html')
 
     def test_signIn(self):
+        """
+        Test rendering sign in page.
+        """
         response = self.client.get(reverse('qoting_app:signin'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qoting_app/login.html')
 
     def test_logout(self):
+        """
+        Test logout feature.
+        """
         response = self.client.get(reverse('qoting_app:logout'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qoting_app/login.html')
 
     def test_postsign(self):
+        """
+        Test sign in function.
+        """
         data = {'email': 'test1234@gmail.com', 'pass': '123456'}
         response = self.client.post(reverse('qoting_app:postsign'), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qoting_app/welcome.html')
+
+        data = {'email': 'invalid@gmail.com', 'pass': '123456'}
+        response = self.client.post(reverse('qoting_app:postsign'), data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'qoting_app/login.html')
+        message = response.content.decode('utf-8')
+        self.assertTrue('Invalid' in message)
+
 
     def test_adminlogin(self):
         response = self.client.get(reverse('qoting_app:adminlogin'))
@@ -49,19 +63,26 @@ class TestingView(TestCase):
         self.assertTemplateUsed(response, 'qoting_app/waiting_room.html')
 
     def test_get_random_questions(self):
+        """
+        Test question random function.
+        """
         question = views.get_random_questions()
 
         self.assertTrue(question[0], None)
-        self.assertEqual(len(question), 8 )
+        self.assertEqual(len(question), 8)
 
     def test_postsignup(self):
+        """
+        Test sign up function.
+        """
         data = {'name': 'tester', 'email': 'test@example.com', 'passw': '123456'}
         response = self.client.get(reverse('qoting_app:postsignup'), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qoting_app/login.html')
 
-    # def test_admin_login(self):
-    #     data = {'admin_username': 'ou','admin_password': '1234'}
-    #     response = self.client.get(reverse('qoting_app:adminlogin'), data)
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertTemplateUsed(response, 'qoting_app/admin_page.html')
+        data = {'name': 'tester2', 'email': 'test@example.com', 'passw': '12345'}
+        response = self.client.get(reverse('qoting_app:postsignup'),data)
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'qoting_app/login.html')
+        message = response.content.decode('utf-8')
+        self.assertTrue('at least 6 character' in message)
