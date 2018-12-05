@@ -94,10 +94,12 @@ class TestingView(TestCase):
         self.assertTrue('1' in message)
 
     def test_postaddquestion(self):
-        question = {'question': 'Question1'}
-        response = self.client.post(reverse('qoting_app:postaddquestion', question))
+        question = {'input': 'what is your name'}
+        response = self.client.post(reverse('qoting_app:postaddquestion'),question)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qoting_app/admin_page.html')
+        message = response.content.decode('utf-8')
+        self.assertTrue('Success' in message)
 
     def test_postadminlogin(self):
         data = {'admin_username': 'root','admin_password': '123456'}
@@ -105,9 +107,5 @@ class TestingView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qoting_app/admin_page.html')
 
-        # data = {'admin_username': 'invalid','admin_password': '123456'}
-        # response = self.client.post(reverse('qoting_app:adminpostsign'),data)
-        # self.assertEqual(response.status_code, 200)
-        # self.assertTemplateUsed(response, 'qoting_app/admin_login.html')
-        # message = response.content.decode('utf-8')
-        # self.assertTrue('Invalid admin' in message)
+
+

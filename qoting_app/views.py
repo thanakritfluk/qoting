@@ -58,6 +58,10 @@ def welcome(request):
         return render(request, 'qoting_app/login.html', {'message': message})
 
 
+def shop_page(request):
+    return render(request, 'qoting_app/shoppage.html')
+
+
 def waiting_page(request):
     try:
         userid = auth_fb.current_user
