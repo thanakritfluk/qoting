@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
@@ -17,25 +21,32 @@
 </div>
 <div class="row border">
 
-    <div style="margin-left: 8cm; margin-top: 0.5cm; margin-bottom: 0.5cm; background-color: #f8f9fa;" class="btn-group"
-         role="group" aria-label="Basic example">
-        <h2>Delete user</h2>
-        <select id="usernickname" multiple>
-            {% for user in usernickiname %}
-                <option>{{ user }}</option>
-            {% endfor %}
-        </select>
-        <br><br>
-        <button type="button" onclick="deleteUser()">Delete</button>
-    </div>
 
+    {#    <div style="margin-left: 8cm; margin-top: 0.5cm; margin-bottom: 0.5cm; background-color: #f8f9fa;" class="btn-group"#}
+    {#         role="group" aria-label="Basic example">#}
+    {#        <h2>Delete user</h2>#}
+    {#        <form action="{% url 'qoting_app:deleteuser' %}" method="post">#}
+    {#            {% csrf_token %}#}
+    {#            <select id="usernickname" name="usernickname" multiple>#}
+    {#                {% for user in usernickiname %}#}
+    {#                    <option value="{{ user }}">{{ user }}</option>#}
+    {#                {% endfor %}#}
+    {#            </select>#}
+    {#            <br><br>#}
+    {#            <input type="submit" class="btn btn-primary" value="submit">#}
+    {#        </form>#}
+    {#    </div>#}
+
+    {% if message %}
+        <h4>{{ message }}</h4>
+    {% endif %}
     <form action="{% url 'qoting_app:postaddquestion' %}" method="post">
         {% csrf_token %}
         <div style="margin-left: 8cm; margin-top: 0.5cm; margin-bottom: 0.5cm; background-color: #f8f9fa;"
              class="btn-group"
              role="group" aria-label="Basic example">
             <h2>Add Question </h2>
-            <input type="text" placeholder="Question" required>
+            <input type="text" name="input" placeholder="Question" required>
             <button type="submit">Add</button>
         </div>
     </form>

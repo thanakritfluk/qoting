@@ -64,6 +64,7 @@ def postsign(request):
     session_id = user['idToken']
     # Let web know that now auth with this session id
     request.session['uid'] = str(session_id)
+    print(auth_fb.current_user)
     return render(request, "qoting_app/welcome.html", {"e": email})
 
 
@@ -119,11 +120,21 @@ def postadminlogin(request):
             pass_admin_fb = database.child('admin').child(str(i)).get().val()
             if str(i) == user and passw == str(pass_admin_fb):
                 usernickiname = getallusername()
-                print(usernickiname)
+                # print(usernickiname)
                 return render(request, 'qoting_app/admin_page.html', {'usernickiname': usernickiname})
     except:
         message = 'Invalid admin credential'
         return render(request, 'qoting_app/admin_login.html', {'message': message})
+
+
+def deleteUser(request):
+    # print(uid)
+    uid = request.POST.get('usernickname')
+    deleteid = str(uid).split(' : ')[1]
+    print(deleteid)
+    # database.child('user').child(deleteid).remove()
+    auth_fb.delete_user('cSR3noQqkKMUKW18k2IZI9u6sqf2')
+    return render(request, 'qoting_app/admin_page.html')
 
 
 def getallusername():
@@ -137,9 +148,12 @@ def getallusername():
 
 def postaddquestion(request):
     try:
-        question = request.POST.get('question')
+        question = request.POST.get('input')
+        print(question)
         data = {"detail": str(question)}
         database.child("question").push(data)
-        return render(request, "qoting_app/admin_page.html")
+        message = 'Success add ' + question
+        return render(request, "qoting_app/admin_page.html", {'message': message})
     except:
-        return render(request, "qoting_app/admin_page.html")
+        message = 'Failed to delete question'
+        return render(request, "qoting_app/admin_page.html", {'message': message})
