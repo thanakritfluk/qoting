@@ -1,7 +1,6 @@
-from django.test import TestCase, RequestFactory
+from django.test import TestCase
 from django.urls import reverse
 from qoting_app import views
-from django.contrib.auth.models import User
 
 
 class TestingView(TestCase):
