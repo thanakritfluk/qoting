@@ -15,8 +15,8 @@
 
   function gg_login(){
     const provider = new firebase.auth.GoogleAuthProvider();
-    const promise = firebase.auth().signInWithRedirect(provider);
-    promise.then(function(result) {
+    firebase.auth().signInWithRedirect(provider);
+    firebase.auth().getRedirectResult().then(function(result) {
       
       var token = result.credential.idToken;
       var accesstoken = result.credential.accessToken;
@@ -43,8 +43,8 @@
 
   function fb_login(){
     const provider = new firebase.auth.FacebookAuthProvider();
-    const promise = firebasse.auth().signInWithRedirect(provider);
-    promise.ther(function(result) {
+    firebasse.auth().signInWithRedirect(provider);
+    firebase.auth().getRedirectResult().ther(function(result) {
 
       var token = result.credential.idToken;
       var accesstoken = result.credential.accessToken;
