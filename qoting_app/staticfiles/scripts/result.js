@@ -31,8 +31,8 @@ function countDown() {
 
 function get_score(){
     var ref = dbRef.ref('room/player');
-    ref.orderByChild("point").on("child_added", function(snapshot) {
-        first.innerHTML = snapshot.val().name + "By "+snapshot.val().point + " point.";
+    ref.orderByValue("point").on("child_added", function(snapshot) {
+        first.innerHTML = snapshot.val().name + " By "+snapshot.val().point + " point.";
       });
 }
 
