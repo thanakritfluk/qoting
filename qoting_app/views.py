@@ -58,10 +58,6 @@ def welcome(request):
         return render(request, 'qoting_app/login.html', {'message': message})
 
 
-def shop_page(request):
-    return render(request, 'qoting_app/shoppage.html')
-
-
 def waiting_page(request):
     try:
         userid = auth_fb.current_user
@@ -84,6 +80,7 @@ def joining(request):
     room_num = request.POST.get('num')
     return render(request, "qoting_app/gameplay.html", {"num": room_num})
 
+
 def postsign(request):
     email = request.POST.get('email')
     passw = request.POST.get('pass')
@@ -99,6 +96,8 @@ def postsign(request):
     userid = auth_fb.current_user
     localid = userid['localId']
     return render(request, "qoting_app/welcome.html", {"user":userid, "id":localid})
+    # print(auth_fb.current_user)
+    # return render(request, "qoting_app/welcome.html", {"e": email})
 
 
 def signUp(request):
@@ -122,6 +121,7 @@ def postsignup(request):
         except:
             message = "Email already exist"
             return render(request, "qoting_app/login.html", {"message": message})
+
 
 def logout(request):
     auth.logout(request)
@@ -152,7 +152,7 @@ def postadminlogin(request):
             pass_admin_fb = database.child('admin').child(str(i)).get().val()
             if str(i) == user and passw == str(pass_admin_fb):
                 usernickiname = getallusername()
-                print(usernickiname)
+                # print(usernickiname)
                 return render(request, 'qoting_app/admin_page.html', {'usernickiname': usernickiname})
     except:
         message = 'Invalid admin credential'
@@ -170,9 +170,12 @@ def getallusername():
 
 def postaddquestion(request):
     try:
-        question = request.POST.get('question')
+        question = request.POST.get('input')
+        print(question)
         data = {"detail": str(question)}
         database.child("question").push(data)
-        return render(request, "qoting_app/admin_page.html")
+        message = 'Success add ' + question
+        return render(request, "qoting_app/admin_page.html", {'message': message})
     except:
-        return render(request, "qoting_app/admin_page.html")
+        message = 'Failed to delete question'
+        return render(request, "qoting_app/admin_page.html", {'message': message})
