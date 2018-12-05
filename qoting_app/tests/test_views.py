@@ -13,10 +13,6 @@ class TestingView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'qoting_app/welcome.html')
 
-    def test_shop_page(self):
-        response = self.client.get(reverse('qoting_app:shop'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'qoting_app/shoppage.html')
 
     def test_signIn(self):
         """
