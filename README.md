@@ -50,3 +50,7 @@ Github repo           |           Name           |               Roles
 [thanakritfluk](https://github.com/thanakritfluk)    |   Thanakrit Daowrueang   |  Back-End Developer
 [piyaspark](https://github.com/piyaspark)    |   Piyaphol Wiengperm     |  Back-End Developer
 [cynic4018](https://github.com/cynic4018)   |   Katapon Sinpunyawong   |  Font-End and Back-End Developer
+
+## Coverage Report
+
+Click here: [Coverage HTML](http://htmlpreview.github.io/?https://github.com/thanakritfluk/qoting/blob/dev-test-assignroom/coverage_html_report/index.html)

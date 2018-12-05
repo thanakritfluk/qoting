@@ -17,7 +17,6 @@ urlpatterns = [
     path('game_play/', views.game_play, name='gameplay'),
     path('result/', views.result_page, name='result'),
 
-
     path('adminlogin/', views.adminlogin, name='adminlogin'),
     path('adminpostsign/', views.postadminlogin, name='adminpostsign'),
     path('postaddquestion/', views.postaddquestion, name="postaddquestion"),

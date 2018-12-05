@@ -24,31 +24,6 @@ localId = ''
 room_num = 0
 
 
-# def admin(request):
-#     try:
-#         question_list = get_random_questions()
-#         # print(question_list)
-#         userid = auth_fb.current_user
-#         localid = userid['localId']
-#         nickname = database.child("user").child(str(localid)).child("details").child("name").get().val()
-#         return render(request, 'qoting_app/admin.html',
-#                       {"question_list": question_list, "localid": localid, "nickname": nickname})
-#     except:
-#         message = "Please login again"
-#         return render(request, 'qoting_app/signIn.html', {"message": message})
-
-def adminlogin(request):
-    return render(request, 'qoting_app/admin_login.html')
-
-
-def postadminlogin(request):
-    user = request.POST.get('admin_username')
-    passw = request.POST.get('admin_password')
-    adminfb = database.child('admin').child('root').get().val()
-    print(adminfb)
-    return render(request, 'qoting_app/admin_page.html')
-
-
 def get_random_questions():
     question_list = []
     inventory = database.child("question").get()
@@ -121,7 +96,7 @@ def postsignup(request):
             database.child("user").child(uid).child("details").set(data)
             return render(request, "qoting_app/login.html")
         except:
-            message = "Email already exits"
+            message = "Email already exist"
             return render(request, "qoting_app/login.html", {"message": message})
 
 def fbSignin(request):
@@ -143,6 +118,7 @@ def fbSignin(request):
         message = "UID already exits"
     return render(request, "qoting_app/welcome.html", {"message": message})
 
+
 def ggSignin(request):
     idtoken = request.POST.get('token')
     name = request.POST.get('name')
@@ -161,6 +137,7 @@ def ggSignin(request):
     except:
         message = "UID already exits"
     return render(request, "qoting_app/welcome.html", {"message": message})
+
 
 def getalluid():
     user_key = database.child('user').get().val()
@@ -197,7 +174,6 @@ def postadminlogin(request):
             pass_admin_fb = database.child('admin').child(str(i)).get().val()
             if str(i) == user and passw == str(pass_admin_fb):
                 usernickiname = getallusername()
-                print(usernickiname)
                 return render(request, 'qoting_app/admin_page.html', {'usernickiname': usernickiname})
     except:
         message = 'Invalid admin credential'
@@ -215,9 +191,12 @@ def getallusername():
 
 def postaddquestion(request):
     try:
-        question = request.POST.get('question')
+        question = request.POST.get('input')
+        print(question)
         data = {"detail": str(question)}
         database.child("question").push(data)
-        return render(request, "qoting_app/admin_page.html")
+        message = 'Success add ' + question
+        return render(request, "qoting_app/admin_page.html", {'message': message})
     except:
-        return render(request, "qoting_app/admin_page.html")
+        message = 'Failed to delete question'
+        return render(request, "qoting_app/admin_page.html", {'message': message})

@@ -1,3 +1,4 @@
+
 var config = {
     apiKey: "AIzaSyAioE3uCJP-KCBuA7d0JOCzR2u13qupGkY",
     authDomain: "qoting-1ca86.firebaseapp.com",
@@ -25,11 +26,20 @@ function deleteUser() {
     var usernickiname = userinfo.split(' : ')[0];
     var uid = userinfo.split(' : ')[1];
     var ref_del = dbRef.ref("user"+"/" + uid);
-    ref_del.remove().then(function () {
+    ref_del.remove().then(async function () {
         console.log("Success delete " + usernickiname);
+        try {
+            let result = await $.ajax({
+            url: '/user/' + uid,
+            type: 'DELETE',
+            });
+            console.log(result);
+        } catch (error) {
+            console.error(error);
+        }
         location.reload();
     }).catch(function (error) {
+        console.log(error);
         console.log("Failed to delete " + usernickiname);
     })
 }
-

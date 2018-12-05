@@ -1,0 +1,9 @@
+.tox/
+e/
+.idea/
+build/
+dist/
+chromedriver_installer.egg-info/
+*.pyc
+MANIFEST
+.cache/
