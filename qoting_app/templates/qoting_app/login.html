@@ -16,19 +16,20 @@
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
-
+    
+    <script src="{% static 'scripts/login.js' %}"></script>
 
     <script>
     // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyAioE3uCJP-KCBuA7d0JOCzR2u13qupGkY",
-        authDomain: "qoting-1ca86.firebaseapp.com",
-        databaseURL: "https://qoting-1ca86.firebaseio.com",
-        projectId: "qoting-1ca86",
-        storageBucket: "qoting-1ca86.appspot.com",
-        messagingSenderId: "241026992000"
-    };
-    firebase.initializeApp(config);
+    // var config = {
+    //     apiKey: "AIzaSyAioE3uCJP-KCBuA7d0JOCzR2u13qupGkY",
+    //     authDomain: "qoting-1ca86.firebaseapp.com",
+    //     databaseURL: "https://qoting-1ca86.firebaseio.com",
+    //     projectId: "qoting-1ca86",
+    //     storageBucket: "qoting-1ca86.appspot.com",
+    //     messagingSenderId: "241026992000"
+    // };
+    // firebase.initializeApp(config);
 
     
         function toRight() {
@@ -38,30 +39,30 @@
             document.getElementById('box').className = 'box rightBack';
         }
         
-        //Google signin popup
-        var googleprovider = new firebase.auth.GoogleAuthProvider();
-        function googleSignin() {
-            firebase.auth().signInWithPopup(googleprovider).then(function(result) {
-                var token = result.credential.accessToken;
-                var user = result.user;
+        // //Google signin popup
+        // var googleprovider = new firebase.auth.GoogleAuthProvider();
+        // function googleSignin() {
+        //     firebase.auth().signInWithPopup(googleprovider).then(function(result) {
+        //         var token = result.credential.accessToken;
+        //         var user = result.user;
                 
-                console.log(token)
-                console.log(user)
-                console.log("Success!!")
-                window.location.pathname = "{% url 'qoting_app:googleSignin' %}"
-            }).catch(function(error){
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // The email of the user's account used.
-                var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
+        //         console.log(token)
+        //         console.log(user)
+        //         console.log("Success!!")
+        //         window.location.pathname = "{% url 'qoting_app:googleSignin' %}"
+        //     }).catch(function(error){
+        //         // Handle Errors here.
+        //         var errorCode = error.code;
+        //         var errorMessage = error.message;
+        //         // The email of the user's account used.
+        //         var email = error.email;
+        //         // The firebase.auth.AuthCredential type that was used.
+        //         var credential = error.credential;
                 
-                console.log(error.code)
-                console.log("Failed :(")
-            });
-        }
+        //         console.log(error.code)
+        //         console.log("Failed :(")
+        //     });
+        // }
 
         // //Google signin redirect
         // var googleprovider = new firebase.auth.GoogleAuthProvider();
@@ -92,30 +93,30 @@
 
         // }
 
-        // Facebook signin popup
-        var facebookprovider = new firebase.auth.FacebookAuthProvider();
-        function facebookSignin() {
-            firebase.auth().signInWithPopup(facebookprovider).then(function(result) {
-                var token = result.credential.accessToken;
-                var user = result.user;
+        // // Facebook signin popup
+        // var facebookprovider = new firebase.auth.FacebookAuthProvider();
+        // function facebookSignin() {
+        //     firebase.auth().signInWithPopup(facebookprovider).then(function(result) {
+        //         var token = result.credential.accessToken;
+        //         var user = result.user;
 
-                console.log(token)
-                console.log(user)
-                console.log("Success!!")
-                window.location.pathname = "{% url 'qoting_app:facebookSignin' %}"
-            }).catch(function(error){
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // The email of the user's account used.
-                var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
+        //         console.log(token)
+        //         console.log(user)
+        //         console.log("Success!!")
+        //         window.location.pathname = "{% url 'qoting_app:facebookSignin' %}"
+        //     }).catch(function(error){
+        //         // Handle Errors here.
+        //         var errorCode = error.code;
+        //         var errorMessage = error.message;
+        //         // The email of the user's account used.
+        //         var email = error.email;
+        //         // The firebase.auth.AuthCredential type that was used.
+        //         var credential = error.credential;
                 
-                console.log(error.code)
-                console.log("Failed :(")
-            });
-        }
+        //         console.log(error.code)
+        //         console.log("Failed :(")
+        //     });
+        // }
 
         // //Facebook signin redirect
         // var facebookprovider = new firebase.auth.FacebookAuthProvider();
@@ -206,7 +207,7 @@
                     </form>
                 </div> -->
                 <div class="googleSignin">
-                    <button class="button" type="submit" style="margin-top: 11vh; background-color: rgb(156, 45, 17);" onclick="googleSignin()">        
+                    <button id="googleSignin" class="button" type="submit" style="margin-top: 11vh; background-color: rgb(156, 45, 17);" onclick="gg_login()">        
                         {% csrf_token %}
                         <span>Google</span>
                         <div class="icon">
@@ -215,7 +216,7 @@
                     </button>
                 </div>
                 <div class="facebookSignin">
-                    <button class="button" type="submit" style="margin-top: 18vh; background-color: rgb(32, 62, 126);" onclick="facebookSignin()">
+                    <button id="facebookSignin" class="button" type="submit" style="margin-top: 18vh; background-color: rgb(32, 62, 126);" onclick="facebookSignin()">
                         {% csrf_token %}
                         <span>Facebook</span>
                         <div class="icon">
@@ -251,6 +252,8 @@
         </div>
     </div>
     <button class="admin" onclick="location.href = '{% url 'qoting_app:adminlogin' %}'">Admin</button>
+    
+    
 </body>
 
 </html>
