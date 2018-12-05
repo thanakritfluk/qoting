@@ -41,4 +41,4 @@ ID           |           Name           |               Roles
 
 ## Coverage Report
 
-Click here: [Coverage HTML](/coverage_html_report/index.html)
+Click here: [Coverage HTML](http://htmlpreview.github.io/?coverage_html_report/index.html)
