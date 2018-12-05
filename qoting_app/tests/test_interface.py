@@ -36,8 +36,45 @@ class TestingWeb(TestCase):
         name.send_keys('Park')
         email.send_keys('park555@gmail.com')
         passw.send_keys('12345678')
-        driver.find_element_by_xpath('//*[@id="box"]/div[2]/div/form/button').click()
+        driver.find_element_by_xpath('//*[@id="box"]/div[2]/div/form/div').click()
         driver.close()
+
+    def test_logout(self):
+        driver = self.driver
+        driver.get('https://qoting-postgre.herokuapp.com')
+        email = driver.find_element_by_name('email')
+        passw = driver.find_element_by_name('pass')
+        email.send_keys('test1234@gmail.com')
+        passw.send_keys('123456')
+
+        driver.find_element_by_xpath('//div/div/div/div/form/button').click()
+        driver.find_element_by_xpath('/html/body/div/div/button[2]').click()
+        driver.close()
+
+    def test_join_game(self):
+        driver = self.driver
+        driver.get('https://qoting-postgre.herokuapp.com')
+        email = driver.find_element_by_name('email')
+        passw = driver.find_element_by_name('pass')
+        email.send_keys('test1234@gmail.com')
+        passw.send_keys('123456')
+
+        driver.find_element_by_xpath('//div/div/div/div/form/button').click()
+
+        self.assertTrue(driver.find_element_by_xpath('//*[@id="room"]').text, 0/8)
+        driver.find_element_by_xpath('//*[@id="start"]').click()
+        self.assertTrue(driver.find_element_by_xpath('//*[@id="room"]').text, 1/8)
+
+    def test_vote(self):
+        driver = self.driver
+        driver.get('https://qoting-postgre.herokuapp.com/vote')
+
+        driver.find_element_by_xpath('//*[@id="q1-a1"]').click()
+        driver.find_element_by_xpath('//*[@id="q1-a2"]').click()
+        driver.find_element_by_xpath('//*[@id="q2-a1"]').click()
+
+        driver.close()
+
 
 
 
