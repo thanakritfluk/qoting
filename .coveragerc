@@ -5,6 +5,7 @@ omit =
         *__init__*
         *manage.py*
         *staticfiles/*
+        */Users/spark/Library/Python/3.7/lib/python/site-packages/six.py*
 
 [report]
 # Regexes for lines to exclude from consideration

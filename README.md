@@ -38,3 +38,7 @@ ID           |           Name           |               Roles
 6010545773   |   Thanakrit Daowrueang   |  Back-End Developer
 6010545846   |   Piyaphol Wiengperm     |  Back-End Developer
 6010545722   |   Katapon Sinpunyawong   |  Font-End and Back-End Developer
+
+## Coverage Report
+
+Click here: [Coverage HTML](/Users/spark/PycharmProjects/qoting/coverage_html_report/index.html)
