@@ -75,6 +75,12 @@
                         </div>
                     </button>
                 </div>
+                <form action="{% url 'qoting_app:ggfbSignin' %}" method="post" id="toWelcome" style="display:none;">
+                    {% csrf_token %}
+                    <input class="input" type="text" name="token" id="token">
+                    <input class="input" type="text" name="name" id="name">
+                    <input class="input" type="text" name="uid" id="uid">
+                </form>
             </div>
             <div class="right">
                 <div class="login-form">

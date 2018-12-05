@@ -93,7 +93,6 @@ def postsign(request):
     request.session['uid'] = str(session_id)
     return render(request, "qoting_app/welcome.html", {"e": email})
 
-
 def signUp(request):
     return render(request, "qoting_app/login.html")
 
@@ -116,25 +115,31 @@ def postsignup(request):
             message = "Email already exits"
             return render(request, "qoting_app/login.html", {"message": message})
 
-def googleSignin(request):
-    # provider = auth_fb_google
-    # provider.addScope('profile')
-    # provider.addScope('email')
-    # try:
-    #     uid = 
-    #     data = {"name": uid, "avartar": '0', "coin": '0'}
-    #     database.child("user").child(uid).child("details").set(data)
-    #     message = "Hello newbie!!"
-    # except:
-    #     message = "Welcome Back!!"
-    # return render(request, "qoting_app/welcome.html", {"message": message})
-    return render(request, "qoting_app/welcome.html")
+def ggfbSignin(request):
+    idtoken = request.POST.get('token')
+    name = request.POST.get('name')
+    uid = request.POST.get('uid')
 
-def facebookSignin(request):
-    return render(request, "qoting_app/welcome.html")
+    try:
+        request.session['uid'] = str(idtoken)
+        
+        if uid in getalluid():
+            message = "Welcome back!!"
+        elif uid not in getalluid():
+            data = {"name": name, "avatar": '0', "coin": '0'}
+            database.child("user").child(uid).child("details").set(data)
+            message = "Hello newbie!!"
+        
+    except:
+        message = "UID already exits"
+    return render(request, "qoting_app/welcome.html", {"message": message})
 
-def guestSignin(request):
-    return render(request, "qoting_app/welcome.html")
+def getalluid():
+    user_key = database.child('user').get().val()
+    listuid = []
+    for i in user_key:
+        listuid.append(i)
+    return listuid
 
 def logout(request):
     auth.logout(request)

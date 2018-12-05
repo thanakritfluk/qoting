@@ -12,7 +12,7 @@ urlpatterns = [
     path('postsign', views.postsign, name='postsign'),
     path('logout', views.logout, name="logout"),
     path('postsignup/', views.postsignup, name='postsignup'),
-    path('guestSignin/', views.guestSignin, name='guestSignin'),
+    path('ggfbSignin/', views.ggfbSignin, name='ggfbSignin'),
     # path('addquestion/', views.addquestion, name='addquestion'),
     # path('postaddquestion/', views.postaddquestion, name="postaddquestion"),
 
