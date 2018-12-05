@@ -20,6 +20,9 @@ auth_fb = firebase.auth()
 
 database = firebase.database()
 
+localId = ''
+room_num = 0
+
 
 # def admin(request):
 #     try:
@@ -51,14 +54,20 @@ def get_random_questions():
     inventory = database.child("question").get()
     for question in inventory.each():
         data = str(question.key())
-        # print(database.child("question").child(str(data)).child("detail").get().val())
         question_list.append(database.child("question").child(str(data)).child("detail").get().val())
     question_list = random.sample(question_list, 8)
     return question_list
 
 
 def welcome(request):
-    return render(request, 'qoting_app/welcome.html')
+    try:
+        userid = auth_fb.current_user
+        localid = userid['localId']
+        print(localId)
+        return render(request, 'qoting_app/welcome.html', {"user":userid, "id":localid})
+    except:
+        message = "Please login again"
+        return render(request, 'qoting_app/login.html', {'message': message})
 
 
 def shop_page(request):
@@ -66,7 +75,13 @@ def shop_page(request):
 
 
 def waiting_page(request):
-    return render(request, 'qoting_app/waiting_room.html')
+    try:
+        userid = auth_fb.current_user
+        localid = userid['localId']
+        return render(request, 'qoting_app/waiting_room.html', {"user":userid, "id":localid})
+    except:
+        message = "Please login again"
+        return render(request, 'qoting_app/login.html', {'message': message})
 
 
 def result_page(request):
@@ -76,6 +91,9 @@ def result_page(request):
 def signIn(request):
     return render(request, "qoting_app/login.html")
 
+def joining(request):
+    room_num = request.POST.get('num')
+    return render(request, "qoting_app/gameplay.html", {"num": room_num})
 
 def postsign(request):
     email = request.POST.get('email')
@@ -86,12 +104,12 @@ def postsign(request):
     except:
         message = "Invalid credentials"
         return render(request, "qoting_app/login.html", {"message": message})
-    print(user['idToken'])
     session_id = user['idToken']
     # Let web know that now auth with this session id
-    # auth_fb.send_email_verification(user['idToken'])
     request.session['uid'] = str(session_id)
-    return render(request, "qoting_app/welcome.html", {"e": email})
+    userid = auth_fb.current_user
+    localid = userid['localId']
+    return render(request, "qoting_app/welcome.html", {"user":userid, "id":localid})
 
 
 def signUp(request):
@@ -120,12 +138,51 @@ def logout(request):
     auth.logout(request)
     return render(request, 'qoting_app/login.html')
 
-# def addquestion(request):
-#     return render(request, "qoting_app/addquestion.html")
+def game_play(request):
+    try:
+        userid = auth_fb.current_user
+        localid = userid['localId']
+        nickname = database.child("user").child(str(localid)).child("details").child("name").get().val()
+        return render(request, 'qoting_app/gameplay.html', {'localid': localid, 'nickname': nickname})
+    except:
+        message = "Please login again"
+        return render(request, 'qoting_app/login.html', {'message': message})
 
 
-# def postaddquestion(request):
-#     question = request.POST.get('question')
-#     data = {"detail": str(question)}
-#     database.child("question").push(data)
-#     return render(request, "qoting_app/addquestion.html")
+def adminlogin(request):
+    return render(request, 'qoting_app/admin_login.html')
+
+
+def postadminlogin(request):
+    try:
+        user = request.POST.get('admin_username')
+        passw = request.POST.get('admin_password')
+        user_admin_fb = database.child('admin').get().val()
+        for i in user_admin_fb:
+            pass_admin_fb = database.child('admin').child(str(i)).get().val()
+            if str(i) == user and passw == str(pass_admin_fb):
+                usernickiname = getallusername()
+                print(usernickiname)
+                return render(request, 'qoting_app/admin_page.html', {'usernickiname': usernickiname})
+    except:
+        message = 'Invalid admin credential'
+        return render(request, 'qoting_app/admin_login.html', {'message': message})
+
+
+def getallusername():
+    user_key = database.child('user').get().val()
+    username = []
+    for i in user_key:
+        user_name = database.child('user').child(str(i)).child('details').child('name').get().val()
+        username.append(user_name + ' : ' + i)
+    return username
+
+
+def postaddquestion(request):
+    try:
+        question = request.POST.get('question')
+        data = {"detail": str(question)}
+        database.child("question").push(data)
+        return render(request, "qoting_app/admin_page.html")
+    except:
+        return render(request, "qoting_app/admin_page.html")

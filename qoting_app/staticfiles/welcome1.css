@@ -40,3 +40,13 @@
     font-weight: bold;
     font-family: sans-serif;
 }
+
+textarea {
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    width: 20vh;
+    height: 5vh;
+    text-align: center;
+}
