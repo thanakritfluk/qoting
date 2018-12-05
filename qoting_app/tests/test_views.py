@@ -51,11 +51,6 @@ class TestingView(TestCase):
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response, 'qoting_app/admin_login.html')
 
-    def test_waiting_page(self):
-        response = self.client.get(reverse('qoting_app:waiting'))
-        self.assertEqual(response.status_code,200)
-        self.assertTemplateUsed(response, 'qoting_app/waiting_room.html')
-
     def test_get_random_questions(self):
         """
         Test question random function.
@@ -97,8 +92,12 @@ class TestingView(TestCase):
         message = response.content.decode('utf-8')
         self.assertTrue('Success' in message)
 
-    # def test_postadminlogin(self):
-    #     data = {'admin_username': 'ou','admin_password': '234'}
-    #     response = self.client.post(reverse('qoting_app:adminpostsign'),data)
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertTemplateUsed(response, 'qoting_app/admin_page.html')
+    def test_vote(self):
+        response = self.client.get(reverse('qoting_app:vote'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'qoting_app/vote.html')
+
+    def test_result_page(self):
+        response = self.client.get(reverse('qoting_app:result'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'qoting_app/result.html')

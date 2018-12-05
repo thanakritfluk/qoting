@@ -8,7 +8,6 @@ urlpatterns = [
     path('postsign', views.postsign, name='postsign'),
     path('logout', views.logout, name="logout"),
     path('postsignup/', views.postsignup, name='postsignup'),
-    path('facebookSignin/', views.fbSignin, name='fbSignin'),
     path('googleSignin/', views.ggSignin, name='ggSignin'),
     path('joining', views.joining, name='joining'),
 
