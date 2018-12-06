@@ -93,7 +93,7 @@ def postsign(request):
     try:
         user = auth_fb.sign_in_with_email_and_password(email, passw)
     except:
-        message = "Invalid credentials"
+        message = "Username or Password is incorrect"
         return render(request, "qoting_app/login.html", {"message": message})
     session_id = user['idToken']
     # Let web know that now auth with this session id
