@@ -141,7 +141,7 @@ def fbSignin(request):
         
     except:
         message = "UID already exits"
-    return render(request, "qoting_app/welcome.html", {"message": message})
+    return render(request, "qoting_app/welcome.html", {"user":userid, "id":localid})
 
 def ggSignin(request):
     idtoken = request.POST.get('token')
@@ -160,7 +160,7 @@ def ggSignin(request):
         
     except:
         message = "UID already exits"
-    return render(request, "qoting_app/welcome.html", {"message": message})
+    return render(request, "qoting_app/welcome.html", {"user":userid, "id":localid})
 
 def getalluid():
     user_key = database.child('user').get().val()
